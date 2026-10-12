@@ -1,0 +1,1174 @@
+[authority]
+commit = "db0ce917815a1f699a1f161b38677c5434f59c64"
+protocol = "ui.observation.v1"
+adapter_versions = ["egui-0.29", "egui-0.31"]
+
+[[file]]
+path = "crates/eframe-029/Cargo.toml"
+byte_length = 11588
+sha3_256 = "4c1ef311aee21e01d06979959d7ec30fc529eae5583786df1ba3366545af5f33"
+
+[[file]]
+path = "crates/eframe-029/Cargo.toml.orig"
+byte_length = 7829
+sha3_256 = "a6525da4e0506fcc2f56350681fca44e65313694a164acbeaa16e813b60318c1"
+
+[[file]]
+path = "crates/eframe-029/LICENSE-APACHE"
+byte_length = 10850
+sha3_256 = "2999ae9d0b8d42ad2be7219ea7bb18937d3a97faf52ec2ee3003049c89079b95"
+
+[[file]]
+path = "crates/eframe-029/LICENSE-MIT"
+byte_length = 1092
+sha3_256 = "fb218ddc3df74601015c438f386da9be502bf36682f3f173d2df973e960631ee"
+
+[[file]]
+path = "crates/eframe-029/README.md"
+byte_length = 4397
+sha3_256 = "88cd6d5056a690dae45d720ce4469cc5466956f60f332cdf96c550709e49f6a2"
+
+[[file]]
+path = "crates/eframe-029/data/icon.png"
+byte_length = 17166
+sha3_256 = "807e36b349eebb5a8033f81bc248ad7afef09bc8c40339307a6ad7d97c427065"
+
+[[file]]
+path = "crates/eframe-029/src/epi.rs"
+byte_length = 30880
+sha3_256 = "a3bc0be809988fb0cc749f1895ba5d698ddb6e38b1b9d2f809487047f9d459ba"
+
+[[file]]
+path = "crates/eframe-029/src/icon_data.rs"
+byte_length = 1732
+sha3_256 = "4e8e4f2a90a25fceb4c907cde57e2de0a821368011b5131d0df089776a063a74"
+
+[[file]]
+path = "crates/eframe-029/src/lib.rs"
+byte_length = 15215
+sha3_256 = "0a25a8ebe142e10345445eb2c0e76b0fae761ae0fc9613a56920d299ff758c39"
+
+[[file]]
+path = "crates/eframe-029/src/native/app_icon.rs"
+byte_length = 9799
+sha3_256 = "9bacc4396331b6e4ac7786f75f3adf1b50956c4cde635505a4c7dd498fd47b16"
+
+[[file]]
+path = "crates/eframe-029/src/native/epi_integration.rs"
+byte_length = 13349
+sha3_256 = "0dc98e51a5830cb176e280d444b74deb504dd471d0d3df5330331a83336a8f85"
+
+[[file]]
+path = "crates/eframe-029/src/native/event_loop_context.rs"
+byte_length = 1770
+sha3_256 = "8f951f56a12c8cee50f38586fe31cb131dee36efdc3684ccbcf6a84ddf8d25c1"
+
+[[file]]
+path = "crates/eframe-029/src/native/file_storage.rs"
+byte_length = 8301
+sha3_256 = "fb2ecf401f859ede189874a25775efe1345f83af4b24f42b40c51bfefc3ba5a4"
+
+[[file]]
+path = "crates/eframe-029/src/native/glow_integration.rs"
+byte_length = 56638
+sha3_256 = "dc697047aadcdcfede29aded1611b9b18da27ce99c28b215d68bdc16e64c03bd"
+
+[[file]]
+path = "crates/eframe-029/src/native/mod.rs"
+byte_length = 313
+sha3_256 = "8ce7ac0bd16aa5175a02c4aabb0b0146ccb4d6486380e288fabe6bc195104563"
+
+[[file]]
+path = "crates/eframe-029/src/native/run.rs"
+byte_length = 15759
+sha3_256 = "27768e3afa84aeaa771b1c8a654855ad4585f6bdb0c464c486a7e340a7b65bc2"
+
+[[file]]
+path = "crates/eframe-029/src/native/wgpu_integration.rs"
+byte_length = 38756
+sha3_256 = "2974e54a8d838250132b58aae66774fe6bf089d5baaa34c99b063b7d68cb0ef6"
+
+[[file]]
+path = "crates/eframe-029/src/native/winit_integration.rs"
+byte_length = 5081
+sha3_256 = "270c1d13ca4ac5377f7dad0c23c320736615d55abba58c2273e53b9d40ce1c90"
+
+[[file]]
+path = "crates/eframe-029/src/stopwatch.rs"
+byte_length = 1117
+sha3_256 = "689bb74b33c987b41857f6bbf8e6b7f811357930c4b9be560ddb35e5ffdefca8"
+
+[[file]]
+path = "crates/eframe-029/src/web/app_runner.rs"
+byte_length = 10982
+sha3_256 = "2caa0b559f599e871ba1dfdad3ebe6251b2f2f6ac936697fdcbe267ed969c21a"
+
+[[file]]
+path = "crates/eframe-029/src/web/backend.rs"
+byte_length = 5193
+sha3_256 = "24d65e3cf012fa7fe03bab18f77022a22af222df69b3139625e4329476e87b07"
+
+[[file]]
+path = "crates/eframe-029/src/web/events.rs"
+byte_length = 36861
+sha3_256 = "f45248105283a1b6f5247fdf2fa525265a4ebd1f055dbb4806dd3c6b56b97c18"
+
+[[file]]
+path = "crates/eframe-029/src/web/input.rs"
+byte_length = 6273
+sha3_256 = "214db407f2d457b8a742ed91011a6d3dbb5e5fcc9c40a06aff198e8ca8182723"
+
+[[file]]
+path = "crates/eframe-029/src/web/mod.rs"
+byte_length = 8431
+sha3_256 = "1c3de85c466487939ceac151ad7c240fcfd3f7d60546e328fda97b89c1f3181e"
+
+[[file]]
+path = "crates/eframe-029/src/web/panic_handler.rs"
+byte_length = 2531
+sha3_256 = "5e8dcccfcff63a69003cd619611cf57085236df4aebdfc29ae8205f6f5a83203"
+
+[[file]]
+path = "crates/eframe-029/src/web/screen_reader.rs"
+byte_length = 644
+sha3_256 = "b4cac8108cf0135876243c4046ac977c717dda56d3e3500e9c575164f6536121"
+
+[[file]]
+path = "crates/eframe-029/src/web/storage.rs"
+byte_length = 1307
+sha3_256 = "c79b4f2c998c9a993c5da9db65d8bb0a35690a1252b5ed12c7cedef1fabc1268"
+
+[[file]]
+path = "crates/eframe-029/src/web/text_agent.rs"
+byte_length = 7070
+sha3_256 = "3a05deb48585d83ae330d7364900fada61b893f32f2e53cbe3e401222a203632"
+
+[[file]]
+path = "crates/eframe-029/src/web/web_logger.rs"
+byte_length = 4427
+sha3_256 = "32e215604625f2ee2ea6a2e57fc5024253abf6df541917e77d717dd0b9c21062"
+
+[[file]]
+path = "crates/eframe-029/src/web/web_painter.rs"
+byte_length = 984
+sha3_256 = "2b84fb08989572a7757d75e042e3ab2de98b90feb2a5f7e54b7a44dda59d3811"
+
+[[file]]
+path = "crates/eframe-029/src/web/web_painter_glow.rs"
+byte_length = 5430
+sha3_256 = "85fc2c06ea49a20bcef9e1c7450c0a157bb6dfddee6dbeda082092ecfc0932ea"
+
+[[file]]
+path = "crates/eframe-029/src/web/web_painter_wgpu.rs"
+byte_length = 14312
+sha3_256 = "f28abc265d5f39925b70fbd54f11180be279570d6284ddb0d2e5b1daf2b376e8"
+
+[[file]]
+path = "crates/eframe-029/src/web/web_runner.rs"
+byte_length = 10044
+sha3_256 = "6679749ee71da043da64941404d115c41bc2c0ffa7bcec4cd0e5b8bb515b4f3b"
+
+[[file]]
+path = "crates/eframe-031/Cargo.toml"
+byte_length = 12505
+sha3_256 = "6132e5536a29cd45e7d8b3feddd5a253a76fa3aa88a0c1386d5fdfdc240bf72c"
+
+[[file]]
+path = "crates/eframe-031/Cargo.toml.orig"
+byte_length = 7923
+sha3_256 = "eb9816464687dd853816cb3c69fa24d1f2fa24d732c7dea2c1c2b982d5653cf6"
+
+[[file]]
+path = "crates/eframe-031/LICENSE-APACHE"
+byte_length = 10850
+sha3_256 = "2999ae9d0b8d42ad2be7219ea7bb18937d3a97faf52ec2ee3003049c89079b95"
+
+[[file]]
+path = "crates/eframe-031/LICENSE-MIT"
+byte_length = 1092
+sha3_256 = "fb218ddc3df74601015c438f386da9be502bf36682f3f173d2df973e960631ee"
+
+[[file]]
+path = "crates/eframe-031/README.md"
+byte_length = 4397
+sha3_256 = "88cd6d5056a690dae45d720ce4469cc5466956f60f332cdf96c550709e49f6a2"
+
+[[file]]
+path = "crates/eframe-031/data/icon.png"
+byte_length = 17166
+sha3_256 = "807e36b349eebb5a8033f81bc248ad7afef09bc8c40339307a6ad7d97c427065"
+
+[[file]]
+path = "crates/eframe-031/src/epi.rs"
+byte_length = 33494
+sha3_256 = "82274321cbd603b1c8f8a698239d0811a6c4b1d2e9a1bd5deea5ed3539e043aa"
+
+[[file]]
+path = "crates/eframe-031/src/icon_data.rs"
+byte_length = 1738
+sha3_256 = "89ca398247416abcd169e82268ab9d2f06e25273eda6f34a39c06d80069f3418"
+
+[[file]]
+path = "crates/eframe-031/src/lib.rs"
+byte_length = 14697
+sha3_256 = "5b98e35ed290e95aae976fbbc9fd97ae17844bfcd03d0d8faefbc621aada2ec9"
+
+[[file]]
+path = "crates/eframe-031/src/native/app_icon.rs"
+byte_length = 9795
+sha3_256 = "8baa9c181e5e922acf9be35a28a7195ca345fa6194dc7e792307e1644ceb280c"
+
+[[file]]
+path = "crates/eframe-031/src/native/epi_integration.rs"
+byte_length = 13333
+sha3_256 = "68d47e8b9eec4a7afdd589add292ed6f9d3c4660ec592a833d2b53dc0d7ed861"
+
+[[file]]
+path = "crates/eframe-031/src/native/event_loop_context.rs"
+byte_length = 1793
+sha3_256 = "4d68543343c7b463cf169e1bb038a70df28fda23d58cdb304c6021526ca3b555"
+
+[[file]]
+path = "crates/eframe-031/src/native/file_storage.rs"
+byte_length = 8766
+sha3_256 = "0f16e3a81e2ce37b1dbc3133654ed28edd06e2ff9192c49e857d909bef58258d"
+
+[[file]]
+path = "crates/eframe-031/src/native/glow_integration.rs"
+byte_length = 57382
+sha3_256 = "2d04f8bfa9c586294d275f0c1cdb3456178165908f12681fdabfee2e28b04488"
+
+[[file]]
+path = "crates/eframe-031/src/native/mod.rs"
+byte_length = 313
+sha3_256 = "8ce7ac0bd16aa5175a02c4aabb0b0146ccb4d6486380e288fabe6bc195104563"
+
+[[file]]
+path = "crates/eframe-031/src/native/run.rs"
+byte_length = 16446
+sha3_256 = "2ee0846fd4c5ac3580c48b60846b933026b32277a7bca08fb1c0ed3fa2a1354e"
+
+[[file]]
+path = "crates/eframe-031/src/native/wgpu_integration.rs"
+byte_length = 39179
+sha3_256 = "e1daa9cda238eeeb208a48a8b7cfa917ef7e15bb8ca680358f5ab979c1550376"
+
+[[file]]
+path = "crates/eframe-031/src/native/winit_integration.rs"
+byte_length = 5202
+sha3_256 = "8fc18ebae576cf36de12efed4c8af5b71450b2c052390e5f0490525745835b43"
+
+[[file]]
+path = "crates/eframe-031/src/stopwatch.rs"
+byte_length = 1117
+sha3_256 = "689bb74b33c987b41857f6bbf8e6b7f811357930c4b9be560ddb35e5ffdefca8"
+
+[[file]]
+path = "crates/eframe-031/src/web/app_runner.rs"
+byte_length = 13315
+sha3_256 = "e2ec8c76663e0a32a0907b04eaed6565cfe136fe50c337c5294a42a1098fd5ae"
+
+[[file]]
+path = "crates/eframe-031/src/web/backend.rs"
+byte_length = 5193
+sha3_256 = "24d65e3cf012fa7fe03bab18f77022a22af222df69b3139625e4329476e87b07"
+
+[[file]]
+path = "crates/eframe-031/src/web/events.rs"
+byte_length = 40253
+sha3_256 = "b49ac8106b1373e708c0fa9764d370aadfe821e0f605b021b585f1f868e1e1bd"
+
+[[file]]
+path = "crates/eframe-031/src/web/input.rs"
+byte_length = 6273
+sha3_256 = "214db407f2d457b8a742ed91011a6d3dbb5e5fcc9c40a06aff198e8ca8182723"
+
+[[file]]
+path = "crates/eframe-031/src/web/mod.rs"
+byte_length = 11939
+sha3_256 = "e93fb503ab38f6f65de201a87d0fd4fcbf4906f2ec217264b87033f0af5dc429"
+
+[[file]]
+path = "crates/eframe-031/src/web/panic_handler.rs"
+byte_length = 2539
+sha3_256 = "0b7cbe4de2484b2323ba5933e2ea135039fc04a4328fc93a8594cd23521a7961"
+
+[[file]]
+path = "crates/eframe-031/src/web/screen_reader.rs"
+byte_length = 644
+sha3_256 = "b4cac8108cf0135876243c4046ac977c717dda56d3e3500e9c575164f6536121"
+
+[[file]]
+path = "crates/eframe-031/src/web/storage.rs"
+byte_length = 1307
+sha3_256 = "c79b4f2c998c9a993c5da9db65d8bb0a35690a1252b5ed12c7cedef1fabc1268"
+
+[[file]]
+path = "crates/eframe-031/src/web/text_agent.rs"
+byte_length = 7134
+sha3_256 = "8c0df6850dd308f40ee38c4d66828cb8acf3436c70685405a168e53c11b82432"
+
+[[file]]
+path = "crates/eframe-031/src/web/web_logger.rs"
+byte_length = 4427
+sha3_256 = "32e215604625f2ee2ea6a2e57fc5024253abf6df541917e77d717dd0b9c21062"
+
+[[file]]
+path = "crates/eframe-031/src/web/web_painter.rs"
+byte_length = 1291
+sha3_256 = "4fdf40260b279ae4503a7bbeb0fe7b8d83358008e258e8d7a2980ee79920e2d8"
+
+[[file]]
+path = "crates/eframe-031/src/web/web_painter_glow.rs"
+byte_length = 6299
+sha3_256 = "3603f9773727be2291cadab9c3069aefea8d8f9ee45691c5ecd3e7a5751bd52c"
+
+[[file]]
+path = "crates/eframe-031/src/web/web_painter_wgpu.rs"
+byte_length = 12125
+sha3_256 = "dc87b0ca40e523c593e011a2f75f18198c91ba3478bc7f9127be049580d23887"
+
+[[file]]
+path = "crates/eframe-031/src/web/web_runner.rs"
+byte_length = 10740
+sha3_256 = "c1cca5a31cd1bf7946de54bd5a3904f4a35f8f813394665331a25d7ab1c0068d"
+
+[[file]]
+path = "crates/eframe-035/Cargo.toml"
+byte_length = 13992
+sha3_256 = "97aec8984887ca3533ac99177c9d2b30f763c875f752b87ca2ac62564b7d0003"
+
+[[file]]
+path = "crates/eframe-035/Cargo.toml.orig"
+byte_length = 8794
+sha3_256 = "5499fb6dcba41eb1bdc4beb9d8468c71ffb9e4fbc8bdaebc2dfc72acfc81fe4e"
+
+[[file]]
+path = "crates/eframe-035/LICENSE-APACHE"
+byte_length = 10850
+sha3_256 = "2999ae9d0b8d42ad2be7219ea7bb18937d3a97faf52ec2ee3003049c89079b95"
+
+[[file]]
+path = "crates/eframe-035/LICENSE-MIT"
+byte_length = 1092
+sha3_256 = "fb218ddc3df74601015c438f386da9be502bf36682f3f173d2df973e960631ee"
+
+[[file]]
+path = "crates/eframe-035/README.md"
+byte_length = 4455
+sha3_256 = "1489cd43451f77eac9ca38830dc1018b4c08dc398003f89ce00243dddd188cac"
+
+[[file]]
+path = "crates/eframe-035/data/icon.png"
+byte_length = 12052
+sha3_256 = "dbb7e2c2d31ec20e01b0e5ac2f06733781d465e4e5144282a9cb58715d588f63"
+
+[[file]]
+path = "crates/eframe-035/src/epi.rs"
+byte_length = 36849
+sha3_256 = "b4e0f60cb2a22fa830be1559728e82fc9220161312e154c28b3d7c1410907db8"
+
+[[file]]
+path = "crates/eframe-035/src/icon_data.rs"
+byte_length = 1738
+sha3_256 = "89ca398247416abcd169e82268ab9d2f06e25273eda6f34a39c06d80069f3418"
+
+[[file]]
+path = "crates/eframe-035/src/lib.rs"
+byte_length = 20442
+sha3_256 = "55ea20fe5f28c8b74dda85772ec8e68ebb276d04dfdc1c6803cb9933a98d8b9a"
+
+[[file]]
+path = "crates/eframe-035/src/native/app_icon.rs"
+byte_length = 11565
+sha3_256 = "1dfb6aababe1654dd29a081872e0a85e07962b6ff15c577a2249ed4679a0f9c2"
+
+[[file]]
+path = "crates/eframe-035/src/native/epi_integration.rs"
+byte_length = 13925
+sha3_256 = "28d1a5e36c15a8779a1e13044c79b2397a7fc0b615413cfe2ca5e7b5309fa7aa"
+
+[[file]]
+path = "crates/eframe-035/src/native/event_loop_context.rs"
+byte_length = 1794
+sha3_256 = "c583995bf4ea2c1f3ee1c9502a6d667be19d7523ef99ad05bc0c822f9d2d77bd"
+
+[[file]]
+path = "crates/eframe-035/src/native/file_storage.rs"
+byte_length = 8910
+sha3_256 = "a26361ad8f4f904df9c2d02ceb4e6b21a297f25faa264ecfd3b6e85de1ed67be"
+
+[[file]]
+path = "crates/eframe-035/src/native/glow_integration.rs"
+byte_length = 61832
+sha3_256 = "cbec7a9d7f1d23d0fd54450f750f675eabb3ea91b855e924ff82e135f9d38c93"
+
+[[file]]
+path = "crates/eframe-035/src/native/macos.rs"
+byte_length = 2691
+sha3_256 = "33d54b788109d8a54cdb88a2ece641a7bec07cde1774b8ea7740bfbd6b030165"
+
+[[file]]
+path = "crates/eframe-035/src/native/mod.rs"
+byte_length = 384
+sha3_256 = "5d4f110c65eb0351376ac23abc2bf7e6f4e859f358a28046d8dc41bd3a0b50aa"
+
+[[file]]
+path = "crates/eframe-035/src/native/run.rs"
+byte_length = 21549
+sha3_256 = "dc5ac2c8497da98d9b7139a8fdd54c1c389f4bbd7ca23e931b63c91705a1924d"
+
+[[file]]
+path = "crates/eframe-035/src/native/wgpu_integration.rs"
+byte_length = 44936
+sha3_256 = "c02c1f0543c8682256b3d71ba290c1900f59641b337ee1517cf81e2d0e492767"
+
+[[file]]
+path = "crates/eframe-035/src/native/winit_integration.rs"
+byte_length = 6373
+sha3_256 = "41265f2a93c291db8d931c38d5ffabb59d436b8d796ee13dd5b992250dfa7ca2"
+
+[[file]]
+path = "crates/eframe-035/src/stopwatch.rs"
+byte_length = 1220
+sha3_256 = "9e5a6b5fc7ea572192bb9b1aa9804e2697166bd45ba65248806765efd0b612d1"
+
+[[file]]
+path = "crates/eframe-035/src/web/app_runner.rs"
+byte_length = 15035
+sha3_256 = "922aa4ba4e31bb8733a3fea64d97441ace4577d73dbf6c1d014973afa029f43a"
+
+[[file]]
+path = "crates/eframe-035/src/web/backend.rs"
+byte_length = 6591
+sha3_256 = "e912993a598dc477d1866d9ec3dcb94f7c9ac2052824d2837daf950f99d251ab"
+
+[[file]]
+path = "crates/eframe-035/src/web/events.rs"
+byte_length = 46668
+sha3_256 = "7f04656dce59b7c56a089392403e66f65f9dfbbd94850f74aedf6264290c6dac"
+
+[[file]]
+path = "crates/eframe-035/src/web/input.rs"
+byte_length = 6282
+sha3_256 = "c5e195f8b2797f5bb38827fd013673c960c463392d263fc2a8f3f3cf9034569c"
+
+[[file]]
+path = "crates/eframe-035/src/web/mod.rs"
+byte_length = 12262
+sha3_256 = "4a9ae8e5c31f7fbe3cb65c60365436acc7959403b5f83da794d0cb3bcc60524d"
+
+[[file]]
+path = "crates/eframe-035/src/web/panic_handler.rs"
+byte_length = 2539
+sha3_256 = "0b7cbe4de2484b2323ba5933e2ea135039fc04a4328fc93a8594cd23521a7961"
+
+[[file]]
+path = "crates/eframe-035/src/web/screen_reader.rs"
+byte_length = 644
+sha3_256 = "b4cac8108cf0135876243c4046ac977c717dda56d3e3500e9c575164f6536121"
+
+[[file]]
+path = "crates/eframe-035/src/web/storage.rs"
+byte_length = 2121
+sha3_256 = "aba863a07734c544162e855f475eb024aa65127c126d9f49a676186d1594ce52"
+
+[[file]]
+path = "crates/eframe-035/src/web/text_agent.rs"
+byte_length = 9925
+sha3_256 = "0d0b0edfe5fb2e91f66d8acb8c7e1b603e9c7a5da003fa06e7b8a1d752dbc422"
+
+[[file]]
+path = "crates/eframe-035/src/web/web_logger.rs"
+byte_length = 4516
+sha3_256 = "594617381062139e8861e6cce6c745ded70b66e4f8555aade7ce6a5bcad44220"
+
+[[file]]
+path = "crates/eframe-035/src/web/web_painter.rs"
+byte_length = 1291
+sha3_256 = "4fdf40260b279ae4503a7bbeb0fe7b8d83358008e258e8d7a2980ee79920e2d8"
+
+[[file]]
+path = "crates/eframe-035/src/web/web_painter_glow.rs"
+byte_length = 6356
+sha3_256 = "ee1b50d57b7d4100fda2c52e4744d8d71ebcfbf5732aba2466f7909795c911cf"
+
+[[file]]
+path = "crates/eframe-035/src/web/web_painter_wgpu.rs"
+byte_length = 16314
+sha3_256 = "fb09608836962410bc624031cb7a37f789c2c91ae2e1b5a965ab290a991d27ce"
+
+[[file]]
+path = "crates/eframe-035/src/web/web_runner.rs"
+byte_length = 13425
+sha3_256 = "174c0e424b46ce54648904c022a6d93200ff00c824d67c577f9ee2c7aab31bca"
+
+[[file]]
+path = "crates/egui-029/Cargo.toml"
+byte_length = 388
+sha3_256 = "3db1ec079013f3872201b5c65013c55d066bce951801b52d2342d69bb9aa5988"
+
+[[file]]
+path = "crates/egui-029/src/lib.rs"
+byte_length = 152
+sha3_256 = "d94f9814d5dfcbe9718c561abc482b5d87fe550c6f52d1a92c1d171437268aba"
+
+[[file]]
+path = "crates/egui-031/Cargo.toml"
+byte_length = 388
+sha3_256 = "b005ca93b84a18adc78a31c1408560839e3fab7cfc15446f87787bb74f77ff2c"
+
+[[file]]
+path = "crates/egui-031/src/lib.rs"
+byte_length = 152
+sha3_256 = "8f53f29857180875a1bd8f0480b7ae26d5dc9586fca234d1d465dac32c89f22c"
+
+[[file]]
+path = "crates/egui-adapter-common/src/lib.rs.inc"
+byte_length = 34287
+sha3_256 = "68cadaa1a6bc179bbbac96105b94a1cd3383251147611cc46a21dd156baf90d7"
+
+[[file]]
+path = "crates/epaint-029/Cargo.toml"
+byte_length = 7227
+sha3_256 = "b5ad09d1f42de864aede69f466dc3367ca2effaec6c004243d5329e7acde1a6b"
+
+[[file]]
+path = "crates/epaint-029/Cargo.toml.orig"
+byte_length = 3373
+sha3_256 = "506a66927330cd7afa488ac4ce7effc9718f92870d05229a3ac568087f28c3a3"
+
+[[file]]
+path = "crates/epaint-029/LICENSE-APACHE"
+byte_length = 10850
+sha3_256 = "2999ae9d0b8d42ad2be7219ea7bb18937d3a97faf52ec2ee3003049c89079b95"
+
+[[file]]
+path = "crates/epaint-029/LICENSE-MIT"
+byte_length = 1092
+sha3_256 = "fb218ddc3df74601015c438f386da9be502bf36682f3f173d2df973e960631ee"
+
+[[file]]
+path = "crates/epaint-029/README.md"
+byte_length = 608
+sha3_256 = "ff5f2ff31ad8d8cd16fc4c466b2ea7cea12971b3397748e2b961814cf40b8e1a"
+
+[[file]]
+path = "crates/epaint-029/benches/benchmark.rs"
+byte_length = 8405
+sha3_256 = "7c185f71e0ed26e6b37ae8d9a3c9c5efcb67a68ead9bb368a04e0d3d6ab0b03f"
+
+[[file]]
+path = "crates/epaint-029/src/bezier.rs"
+byte_length = 39039
+sha3_256 = "a5c01f7357208edc64ec360a84cceae7ec976af2ba28917a6f77d189aae35498"
+
+[[file]]
+path = "crates/epaint-029/src/color.rs"
+byte_length = 1521
+sha3_256 = "e2871de7f4dcbd69ee7bb4a361f0cf53a6b2be5449414e1a06e649aa9a76cc23"
+
+[[file]]
+path = "crates/epaint-029/src/image.rs"
+byte_length = 13066
+sha3_256 = "d54c2ab9eb2a413bec87f65f5a1808962fa5f124cc2a3c4f69cf4d6ac6333847"
+
+[[file]]
+path = "crates/epaint-029/src/lib.rs"
+byte_length = 5400
+sha3_256 = "63dc862144c270bd4a6bf32e8d8a4737e0c0a5b18a0fd30bde8d3ef6a7b53b0c"
+
+[[file]]
+path = "crates/epaint-029/src/margin.rs"
+byte_length = 5923
+sha3_256 = "ab7dfe36b46fe0cb4a0cff456f389d3961a1926dc16ac9d4478dab536b29475a"
+
+[[file]]
+path = "crates/epaint-029/src/mesh.rs"
+byte_length = 10632
+sha3_256 = "4bb0e146aa69e448b3dd2d8caff0df8d259b58ef46bd7a185a167723c77f0590"
+
+[[file]]
+path = "crates/epaint-029/src/mutex.rs"
+byte_length = 16023
+sha3_256 = "1536ba372a1e4ec2ac21754e7ace5989953d272b81c94042e48f7b682d0966e1"
+
+[[file]]
+path = "crates/epaint-029/src/shadow.rs"
+byte_length = 2072
+sha3_256 = "e65918ac1509b9e00cdd8e99792dbc919b9bb9dc31cf4d6e9a264577c7bd2c84"
+
+[[file]]
+path = "crates/epaint-029/src/shape.rs"
+byte_length = 39367
+sha3_256 = "004a764d28375bc5f3025b34b9a8533b1c9be25bf0a80344c86f8c1d9c3a68d0"
+
+[[file]]
+path = "crates/epaint-029/src/shape_transform.rs"
+byte_length = 3460
+sha3_256 = "06118edbbeb882f1ab50c61495aa5acc894e32b8ef06ce8b3b028f9b63cceebe"
+
+[[file]]
+path = "crates/epaint-029/src/stats.rs"
+byte_length = 7374
+sha3_256 = "a1897ffca5b988f085a3fc1e189db5a81520a59a3c22dfb15f11d51e7a4fd9ca"
+
+[[file]]
+path = "crates/epaint-029/src/stroke.rs"
+byte_length = 4657
+sha3_256 = "f96b04da21bdf0b6714d694465b4af41ef5bc70f5ce96c5a02ca357a46adbb3e"
+
+[[file]]
+path = "crates/epaint-029/src/tessellator.rs"
+byte_length = 76999
+sha3_256 = "b3c9ac98b4996d3fb269dd1f8a8a06ebb5ab789e1d87f1850cc36270e3c655d3"
+
+[[file]]
+path = "crates/epaint-029/src/text/cursor.rs"
+byte_length = 4254
+sha3_256 = "0d0e1fd85703009a072c3bffab65a531619e6c0786c7803a862ca9c09a4bdbd3"
+
+[[file]]
+path = "crates/epaint-029/src/text/font.rs"
+byte_length = 17503
+sha3_256 = "5c82be3d3ba7c1666de3800adb22d4deb9f74338eca6519f429a6557bd12c177"
+
+[[file]]
+path = "crates/epaint-029/src/text/fonts.rs"
+byte_length = 26409
+sha3_256 = "fdb593d44b89c93d86e9a4488dc09a7f64a343b09d1a2f45f8c9934e6749426d"
+
+[[file]]
+path = "crates/epaint-029/src/text/mod.rs"
+byte_length = 503
+sha3_256 = "ec236163926e9ab7ee67cc8f7f81550384e19fbfa0edf9cc081e09f0e4e2244e"
+
+[[file]]
+path = "crates/epaint-029/src/text/text_layout.rs"
+byte_length = 39695
+sha3_256 = "ea003229241222f931de5391b7720bbd2eda85831c848d87e3463ccba6476d72"
+
+[[file]]
+path = "crates/epaint-029/src/text/text_layout_types.rs"
+byte_length = 38309
+sha3_256 = "751cfcdf63843fe33d9bfe9e53eee7ce8549ffdbea653ef9aa003ad1f7825d30"
+
+[[file]]
+path = "crates/epaint-029/src/texture_atlas.rs"
+byte_length = 8270
+sha3_256 = "bab6e71d34937c4c04034f0f11bea1b379d1d08543172b76f60d70a9b5bc7a2b"
+
+[[file]]
+path = "crates/epaint-029/src/texture_handle.rs"
+byte_length = 3362
+sha3_256 = "5c5aaca262a47b0f909f6db001bc433dcfbf05352ef44787bd2761b7e1128511"
+
+[[file]]
+path = "crates/epaint-029/src/textures.rs"
+byte_length = 11171
+sha3_256 = "cb0213d835d1ecc9f97f5ffc69ead175c582344b7bbae0037d41d848be32ef41"
+
+[[file]]
+path = "crates/epaint-029/src/util/mod.rs"
+byte_length = 458
+sha3_256 = "b8745171f98dc197cbc36f028584038d8d9c416c7de035741c453bca85427044"
+
+[[file]]
+path = "crates/epaint-031/Cargo.toml"
+byte_length = 7853
+sha3_256 = "7b5408deb65cbce86e1fd8ff29240ba8976eca11997b8349da213563e09538bd"
+
+[[file]]
+path = "crates/epaint-031/Cargo.toml.orig"
+byte_length = 3323
+sha3_256 = "1b06d3293e8360c087f729a923d32aaf4ff57ff977a55b354bb3664149730907"
+
+[[file]]
+path = "crates/epaint-031/LICENSE-APACHE"
+byte_length = 10850
+sha3_256 = "2999ae9d0b8d42ad2be7219ea7bb18937d3a97faf52ec2ee3003049c89079b95"
+
+[[file]]
+path = "crates/epaint-031/LICENSE-MIT"
+byte_length = 1092
+sha3_256 = "fb218ddc3df74601015c438f386da9be502bf36682f3f173d2df973e960631ee"
+
+[[file]]
+path = "crates/epaint-031/README.md"
+byte_length = 608
+sha3_256 = "ff5f2ff31ad8d8cd16fc4c466b2ea7cea12971b3397748e2b961814cf40b8e1a"
+
+[[file]]
+path = "crates/epaint-031/benches/benchmark.rs"
+byte_length = 8405
+sha3_256 = "7c185f71e0ed26e6b37ae8d9a3c9c5efcb67a68ead9bb368a04e0d3d6ab0b03f"
+
+[[file]]
+path = "crates/epaint-031/src/brush.rs"
+byte_length = 675
+sha3_256 = "a68cbf4dd8e5bcede4085bb0b2692625f8563731e7cfa1d06bb6a372598add2e"
+
+[[file]]
+path = "crates/epaint-031/src/color.rs"
+byte_length = 1521
+sha3_256 = "e2871de7f4dcbd69ee7bb4a361f0cf53a6b2be5449414e1a06e649aa9a76cc23"
+
+[[file]]
+path = "crates/epaint-031/src/corner_radius.rs"
+byte_length = 6668
+sha3_256 = "4c5187211ae1c5f1e6456486274bb21174feb1d2fee73aa8d059a94a5beb4e9a"
+
+[[file]]
+path = "crates/epaint-031/src/corner_radius_f32.rs"
+byte_length = 5500
+sha3_256 = "87e5104e4d622e4e16bb7099fdd71807b2bfb9d2816165d4ac26e7b0c52c36d7"
+
+[[file]]
+path = "crates/epaint-031/src/image.rs"
+byte_length = 13308
+sha3_256 = "0caba815d6a11ffd09116e56e1604b813203392952db2e8efe47d5136e74b028"
+
+[[file]]
+path = "crates/epaint-031/src/lib.rs"
+byte_length = 4692
+sha3_256 = "1e5ed6c492ba9f229a595eb3f26c0d16b5d11ae00d55186ea60123df9a0256ea"
+
+[[file]]
+path = "crates/epaint-031/src/margin.rs"
+byte_length = 6671
+sha3_256 = "43ba61a3155413fcddebafefd8187c53eabd8c9676344b2bc502e310c6fb5e83"
+
+[[file]]
+path = "crates/epaint-031/src/marginf.rs"
+byte_length = 6570
+sha3_256 = "b30d1b9ca024bd9948156d4e5f1840bf3d9d02668d3e9f75ac96e5b5e42d7b09"
+
+[[file]]
+path = "crates/epaint-031/src/mesh.rs"
+byte_length = 10967
+sha3_256 = "73f080d0742f497e610d7ce741fe2449308ff9d26589f7b565302d9912c6fa21"
+
+[[file]]
+path = "crates/epaint-031/src/mutex.rs"
+byte_length = 16014
+sha3_256 = "1bdbcb6154f8a1bc19f216e5c35329957efc95878394d369871e30c497a6e78a"
+
+[[file]]
+path = "crates/epaint-031/src/shadow.rs"
+byte_length = 2561
+sha3_256 = "5249eae9f278a63f0eaa81cf7e5d152bdb9ddbcc57c5bd26f64705ec6e99c239"
+
+[[file]]
+path = "crates/epaint-031/src/shape_transform.rs"
+byte_length = 3527
+sha3_256 = "1d1db4c5037c41381f8968ee8f64491a43940fd7734e66719f35fd08c561f298"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/bezier_shape.rs"
+byte_length = 39138
+sha3_256 = "6c345bf5c4f5e143921ef001af41d7343df4c89a9e100d545635992765aad7c3"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/circle_shape.rs"
+byte_length = 1357
+sha3_256 = "51bc11dfb43160dc7a604ca28220de174a3f766541e5931f1f73f84f5c580bfe"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/ellipse_shape.rs"
+byte_length = 1421
+sha3_256 = "8754d404b857b2dbf9d261353bd8d2c1a46dcc45c43c7ac46a1d367cf2206562"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/mod.rs"
+byte_length = 433
+sha3_256 = "6e76d4a72550f4be51199df964619d6250e90e1fa7c3aeb734e407a3913ea59b"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/paint_callback.rs"
+byte_length = 3590
+sha3_256 = "e86b6517e63d1f13f30e9e2163ba2510454aeef1d583cfd5040d1f026858db7d"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/path_shape.rs"
+byte_length = 2332
+sha3_256 = "cb1b6dbf6ebf63fffdd6549cf262f6571787e7c006a8872b96626440bd07efe2"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/rect_shape.rs"
+byte_length = 5832
+sha3_256 = "26654d95d6f5e416b99f4fb83a96b83c4f758d0f4e60a66f82be5f2f526e75e7"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/shape.rs"
+byte_length = 18121
+sha3_256 = "04b302f7d2dafbeac965b24f20a28df5bbc9887754728f7c8eb86a1659987399"
+
+[[file]]
+path = "crates/epaint-031/src/shapes/text_shape.rs"
+byte_length = 3085
+sha3_256 = "cdba58e79c78c1d58128102ae00afc529f1ceecc5e80bf71a6fb24bdcbca0e22"
+
+[[file]]
+path = "crates/epaint-031/src/stats.rs"
+byte_length = 7374
+sha3_256 = "a1897ffca5b988f085a3fc1e189db5a81520a59a3c22dfb15f11d51e7a4fd9ca"
+
+[[file]]
+path = "crates/epaint-031/src/stroke.rs"
+byte_length = 4996
+sha3_256 = "d4b03c3c85cb64606805b3c04f8354dfffa666f01fdb4dfce7b26112e3cb9a9d"
+
+[[file]]
+path = "crates/epaint-031/src/tessellator.rs"
+byte_length = 89495
+sha3_256 = "46d6917f2c8d2ef76f143c8a41dca20e413d9ca11e5346f6963a2fc1778a0492"
+
+[[file]]
+path = "crates/epaint-031/src/text/cursor.rs"
+byte_length = 4254
+sha3_256 = "0d0e1fd85703009a072c3bffab65a531619e6c0786c7803a862ca9c09a4bdbd3"
+
+[[file]]
+path = "crates/epaint-031/src/text/font.rs"
+byte_length = 17610
+sha3_256 = "86bc62956e40f35e541243bb18d9ca35932b34a5fcfa1022daa5163680fc4b99"
+
+[[file]]
+path = "crates/epaint-031/src/text/fonts.rs"
+byte_length = 27708
+sha3_256 = "d7577fa9f997f876b4d2280c8cdd42eeb127f9e74b0b66e5d5f280f035f5add8"
+
+[[file]]
+path = "crates/epaint-031/src/text/mod.rs"
+byte_length = 570
+sha3_256 = "128530298c2c831f0a1d05bcd9e30635dedc0780574cd9772274623e7789c3dc"
+
+[[file]]
+path = "crates/epaint-031/src/text/text_layout.rs"
+byte_length = 39738
+sha3_256 = "1a66f057022f9afb5b07c5a68c12956feb230096db871b6ac0881486b9a3b8b2"
+
+[[file]]
+path = "crates/epaint-031/src/text/text_layout_types.rs"
+byte_length = 38234
+sha3_256 = "7931cdcf8b109db1d9129533673f5df3631c85d599a321c30af910aee7ff4529"
+
+[[file]]
+path = "crates/epaint-031/src/texture_atlas.rs"
+byte_length = 8282
+sha3_256 = "6188d02eb5d7277c261e61a4ba274a568d8b78e4e68f936e0a18266ddad4d8e4"
+
+[[file]]
+path = "crates/epaint-031/src/texture_handle.rs"
+byte_length = 3552
+sha3_256 = "a87b6f1dc5cb19abc21dc9bbd8d20a66b48c847373646ab70505445b72e6b2da"
+
+[[file]]
+path = "crates/epaint-031/src/textures.rs"
+byte_length = 11171
+sha3_256 = "cb0213d835d1ecc9f97f5ffc69ead175c582344b7bbae0037d41d848be32ef41"
+
+[[file]]
+path = "crates/epaint-031/src/util/mod.rs"
+byte_length = 458
+sha3_256 = "b8745171f98dc197cbc36f028584038d8d9c416c7de035741c453bca85427044"
+
+[[file]]
+path = "crates/epaint-031/src/viewport.rs"
+byte_length = 1893
+sha3_256 = "17c1797adf452438825dcb9705800fcc06554d044f2bb40383de1291b395f314"
+
+[[file]]
+path = "crates/epaint-035/Cargo.toml"
+byte_length = 9741
+sha3_256 = "e7cd5cba8be0de261537d31ebaaa7135540cbaabb0eb493214d594429e654a28"
+
+[[file]]
+path = "crates/epaint-035/Cargo.toml.orig"
+byte_length = 3121
+sha3_256 = "16984a5bbba5c238cd10d79a3d09714b558abea30e8f2233b761b56ff6f721f5"
+
+[[file]]
+path = "crates/epaint-035/LICENSE-APACHE"
+byte_length = 10850
+sha3_256 = "2999ae9d0b8d42ad2be7219ea7bb18937d3a97faf52ec2ee3003049c89079b95"
+
+[[file]]
+path = "crates/epaint-035/LICENSE-MIT"
+byte_length = 1092
+sha3_256 = "fb218ddc3df74601015c438f386da9be502bf36682f3f173d2df973e960631ee"
+
+[[file]]
+path = "crates/epaint-035/README.md"
+byte_length = 608
+sha3_256 = "ff5f2ff31ad8d8cd16fc4c466b2ea7cea12971b3397748e2b961814cf40b8e1a"
+
+[[file]]
+path = "crates/epaint-035/benches/benchmark.rs"
+byte_length = 8678
+sha3_256 = "13fd9b4a4ccff84b52e240dd0c329ecfd98aeebc380e783eac13409c70fca585"
+
+[[file]]
+path = "crates/epaint-035/src/brush.rs"
+byte_length = 675
+sha3_256 = "a68cbf4dd8e5bcede4085bb0b2692625f8563731e7cfa1d06bb6a372598add2e"
+
+[[file]]
+path = "crates/epaint-035/src/color.rs"
+byte_length = 1521
+sha3_256 = "e2871de7f4dcbd69ee7bb4a361f0cf53a6b2be5449414e1a06e649aa9a76cc23"
+
+[[file]]
+path = "crates/epaint-035/src/corner_radius.rs"
+byte_length = 6668
+sha3_256 = "4c5187211ae1c5f1e6456486274bb21174feb1d2fee73aa8d059a94a5beb4e9a"
+
+[[file]]
+path = "crates/epaint-035/src/corner_radius_f32.rs"
+byte_length = 5500
+sha3_256 = "87e5104e4d622e4e16bb7099fdd71807b2bfb9d2816165d4ac26e7b0c52c36d7"
+
+[[file]]
+path = "crates/epaint-035/src/direction.rs"
+byte_length = 832
+sha3_256 = "0f8937da452c408327f4f2f8a97279efc40f5cc6ef4413c8e912a85a765fb7dd"
+
+[[file]]
+path = "crates/epaint-035/src/image.rs"
+byte_length = 16458
+sha3_256 = "0d858b4ea943c3df7b24159b4eb1d93c7f3a30f2e49cf749cae41b66674f8220"
+
+[[file]]
+path = "crates/epaint-035/src/lib.rs"
+byte_length = 5005
+sha3_256 = "5706369822254e5182a7662d7d371cde57bf23376c8ef869b8453be69fcbdf3e"
+
+[[file]]
+path = "crates/epaint-035/src/margin.rs"
+byte_length = 6256
+sha3_256 = "7b45241fe1f22bdab708d11a9fe9756a60cfa848dc873cd2f693d4a66c96be74"
+
+[[file]]
+path = "crates/epaint-035/src/margin_f32.rs"
+byte_length = 6230
+sha3_256 = "b2e46e1f3014a2e7d40db79ed4fd3b909dec0a5df17df5c5ff0fa2909ac2627e"
+
+[[file]]
+path = "crates/epaint-035/src/mesh.rs"
+byte_length = 11549
+sha3_256 = "9e232016ce4fe148e6e51642935803a38b55f74a733a719032ea1e689fee27b3"
+
+[[file]]
+path = "crates/epaint-035/src/mutex.rs"
+byte_length = 8075
+sha3_256 = "cc719cab202965b1a11813e7df958fdf43eec80b8da2af8d6c0e882e40ae8848"
+
+[[file]]
+path = "crates/epaint-035/src/shadow.rs"
+byte_length = 2575
+sha3_256 = "71dbc306e2356c460e0f5d0377374aa8339f632113637b504872752e3afa4e45"
+
+[[file]]
+path = "crates/epaint-035/src/shape_transform.rs"
+byte_length = 3649
+sha3_256 = "1a1656aa018b3c992c327c3aadfa04f174d27a7f17df31f2c7ab817e3f823edb"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/bezier_shape.rs"
+byte_length = 39175
+sha3_256 = "eb2c41434bf7ef920b94e29d5c72d7adec891cfadd4bd8790d3eb246f678f252"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/circle_shape.rs"
+byte_length = 1357
+sha3_256 = "51bc11dfb43160dc7a604ca28220de174a3f766541e5931f1f73f84f5c580bfe"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/ellipse_shape.rs"
+byte_length = 2257
+sha3_256 = "513cd48089546c85b97d27ab984ecd6d1cb5ed58ee2638e04e5d5c48d593338a"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/mod.rs"
+byte_length = 433
+sha3_256 = "6e76d4a72550f4be51199df964619d6250e90e1fa7c3aeb734e407a3913ea59b"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/paint_callback.rs"
+byte_length = 3590
+sha3_256 = "e86b6517e63d1f13f30e9e2163ba2510454aeef1d583cfd5040d1f026858db7d"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/path_shape.rs"
+byte_length = 2332
+sha3_256 = "cb1b6dbf6ebf63fffdd6549cf262f6571787e7c006a8872b96626440bd07efe2"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/rect_shape.rs"
+byte_length = 7113
+sha3_256 = "b582a1cd3c5defea062ef3fe53c9e01ecc8aa84c1b2614b5ae0636510f8e816c"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/shape.rs"
+byte_length = 18603
+sha3_256 = "9650fa8f6c08ff2f92b8105ea461a3d0cb2e9d854d5fd68b05eb6f0b231be3eb"
+
+[[file]]
+path = "crates/epaint-035/src/shapes/text_shape.rs"
+byte_length = 6368
+sha3_256 = "8de78aace312cd4b10052bd1ac6b7c6c3235dd882243f983f319f35df3a72b21"
+
+[[file]]
+path = "crates/epaint-035/src/stats.rs"
+byte_length = 7378
+sha3_256 = "f089126b38959279a8d372b051c6d6b2620986c4bafbdd2a5a3c52e4fb1400d5"
+
+[[file]]
+path = "crates/epaint-035/src/stroke.rs"
+byte_length = 7121
+sha3_256 = "bf57dba37459fc9382ee2dee99ff33c9747f7126489c42e5d66d92c0240030bc"
+
+[[file]]
+path = "crates/epaint-035/src/tessellator.rs"
+byte_length = 87378
+sha3_256 = "ed6c4d87150ecb80c364d2a7545ed9460708047abe04bfd619693b66da1b120e"
+
+[[file]]
+path = "crates/epaint-035/src/text/cursor.rs"
+byte_length = 3063
+sha3_256 = "3538dc9a0ae4d0b0f49dfd92602934c2b3503ea540d871f48dfb746cde58856b"
+
+[[file]]
+path = "crates/epaint-035/src/text/font.rs"
+byte_length = 31098
+sha3_256 = "86e133f1735831fd82e40413780eb927db0337f87f92e8ef36924c393f0f12dc"
+
+[[file]]
+path = "crates/epaint-035/src/text/fonts.rs"
+byte_length = 54308
+sha3_256 = "e9bdda15d8d417088cfce50c529eae0eb51b527b05d59fb7bb7b7d15ff4b8e94"
+
+[[file]]
+path = "crates/epaint-035/src/text/index.rs"
+byte_length = 5560
+sha3_256 = "c5830035b6e637e81188d25a090985a368807022292d32a84ff23e0e37a15dad"
+
+[[file]]
+path = "crates/epaint-035/src/text/mod.rs"
+byte_length = 2033
+sha3_256 = "fec4855dabdb87b15eba1a030db53ab56bc47cfb94bae597dac7e29578b8c489"
+
+[[file]]
+path = "crates/epaint-035/src/text/text_layout.rs"
+byte_length = 67902
+sha3_256 = "160074bae2c26b161962ca62ec7f0f2e5284d8aef7a9c337fa68208a859bd8f2"
+
+[[file]]
+path = "crates/epaint-035/src/text/text_layout_types.rs"
+byte_length = 47207
+sha3_256 = "f021d24c042f56b9cf2dbc58e8d93b69864844a1fc16eddc364f5224b42915de"
+
+[[file]]
+path = "crates/epaint-035/src/texture_atlas.rs"
+byte_length = 8769
+sha3_256 = "a9acaa7c2e60eebd350b74adfc35c7878a2a1424d9839d7db7a8f983b3a9ab34"
+
+[[file]]
+path = "crates/epaint-035/src/texture_handle.rs"
+byte_length = 3564
+sha3_256 = "cb640cbf9a65cb51dfbf5e459dc22602341c062bd53ec6e55ddc3a727508d2aa"
+
+[[file]]
+path = "crates/epaint-035/src/textures.rs"
+byte_length = 11175
+sha3_256 = "9a75cae9dc5ba594724f04e116bed2165b5589caeaa1c8f4564e4aeef8302c10"
+
+[[file]]
+path = "crates/epaint-035/src/util/mod.rs"
+byte_length = 378
+sha3_256 = "9230d5f6bd1834dc5a2c1b4d92dc605d9548afe929f1842ae83c0e786349602f"
+
+[[file]]
+path = "crates/epaint-035/src/viewport.rs"
+byte_length = 1893
+sha3_256 = "17c1797adf452438825dcb9705800fcc06554d044f2bb40383de1291b395f314"
+
+[[file]]
+path = "crates/protocol/Cargo.toml"
+byte_length = 370
+sha3_256 = "0796da184fdc03b057ad49466f7f8248c5794e8febaf8329c5aa210bfadcb7e3"
+
+[[file]]
+path = "crates/protocol/src/canonical.rs"
+byte_length = 1598
+sha3_256 = "cefb08122cb117d42e681b0d7caa148ed81a20c44263f40ac35f4000866a4164"
+
+[[file]]
+path = "crates/protocol/src/contract.rs"
+byte_length = 15027
+sha3_256 = "6186a1430c31146ca6417c918ebddb8ba830e58a1703b2f87f68965ad4109286"
+
+[[file]]
+path = "crates/protocol/src/frame.rs"
+byte_length = 17474
+sha3_256 = "1e02f1cadcff97edb543297fad3d4171fee2f2749c7a4bc8f2dfea3c8ff92762"
+
+[[file]]
+path = "crates/protocol/src/geometry.rs"
+byte_length = 8752
+sha3_256 = "f8769ba939ffaeef810b9ab01e7ecd7f39b806c46281981ba77f2e62a56b50b5"
+
+[[file]]
+path = "crates/protocol/src/lib.rs"
+byte_length = 1628
+sha3_256 = "cbdbde29bcb3404298dfdfd0d64c0618028f8e44d1dc762624b134d6f68b1eeb"
+
+[[file]]
+path = "crates/protocol/src/model.rs"
+byte_length = 18593
+sha3_256 = "54b0e0ccbebeb4069409b28795459f5ffe8238c2b73a19d74cd8a0fe7b1a3173"
+
+[[file]]
+path = "crates/protocol/src/trace.rs"
+byte_length = 6326
+sha3_256 = "d383baa9b7a8c3e1aa9aa515d820265784d53394aeedf7399294975fc5aaf28a"
+
+[[file]]
+path = "crates/runtime/Cargo.toml"
+byte_length = 647
+sha3_256 = "9ca18582da45b1f6ab7be0234ede7d9de50f0b42540a96436066da80aa288b93"
+
+[[file]]
+path = "crates/runtime/examples/memory_delivery.rs"
+byte_length = 935
+sha3_256 = "03e6ba1201f040477b5e336faaea5fc4242c86264cff0cdeca0f83adb6dfb53a"
+
+[[file]]
+path = "crates/runtime/src/inherited_unix.rs"
+byte_length = 4461
+sha3_256 = "d4d08bf8e71684be3724a3c6765ccd67081c2d3c5b33424094c002d717f92fce"
+
+[[file]]
+path = "crates/runtime/src/inherited_windows.rs"
+byte_length = 2366
+sha3_256 = "cbfd35b100136b24e4c22a2e4abac86152c523191bcea433e2522f7871320c21"
+
+[[file]]
+path = "crates/runtime/src/lib.rs"
+byte_length = 30453
+sha3_256 = "2885a9864c6c8c21e81c3daab11ec422c08ab330725e393705d5a2bae5b5b2a6"
+
+[[file]]
+path = "crates/runtime/src/memory.rs"
+byte_length = 22431
+sha3_256 = "21bfc069af3be265e6163377b000e224610d8f46c458e40f739214f418abca5c"
+
+[[file]]
+path = "crates/runtime/src/observer_windows.rs"
+byte_length = 22124
+sha3_256 = "db4b7fba6627ecf9d2c3c13fc294815425bc2cb664dcf02fe8d14d302b7dd4e6"
+
+[[file]]
+path = "crates/runtime/src/queue_windows.rs"
+byte_length = 8126
+sha3_256 = "81d20190b84cde45bddea2e0dbc9b577aa5370365ac64bdb25eb52e19b61c771"
