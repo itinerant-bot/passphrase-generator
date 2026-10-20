@@ -9,7 +9,7 @@ default-run = "four-words-gui"
 
 [features]
 default = ["gui"]
-gui = ["dep:eframe", "dep:ui-observation-egui-031", "dep:ui-observation-protocol", "dep:ui-observation-runtime"]
+gui = ["dep:eframe", "dep:ui-observation-egui-031", "dep:ui-observation-protocol", "dep:ui-observation-runtime", "dep:winresource"]
 packaging = ["dep:zip", "dep:serde_json"]
 
 [[bin]]
@@ -32,6 +32,9 @@ ui-observation-protocol = { path = "vendor/ui-observation/crates/protocol", opti
 ui-observation-runtime = { path = "vendor/ui-observation/crates/runtime", optional = true }
 zip = { version = "2.4", optional = true, default-features = false, features = ["deflate"] }
 serde_json = { version = "1.0", optional = true }
+
+[build-dependencies]
+winresource = { version = "0.1.31", optional = true, default-features = false }
 
 [lints.rust]
 unsafe_code = "forbid"

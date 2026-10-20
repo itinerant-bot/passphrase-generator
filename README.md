@@ -40,8 +40,11 @@ you close it. Native Windows builds do not need Linux.
 ## Desktop app
 
 The app follows the OS light or dark theme automatically, including changes
-while it is open. Use the sliders or type into their number boxes. The character
-limit defaults to **128**. Tick **Limit the number
+while it is open. Its Library of Babel icon combines an open book, an infinity
+loop, and receding hexagonal arches. The icon is embedded in the GUI window and
+in Windows executables, including portable releases; no external image files
+are needed to run the app. Use the sliders or type into their number boxes. The
+character limit defaults to **128**. Tick **Limit the number
 of words** to enable the optional word cap. Choose your languages and either a
 fixed hyphen or a space between words. Changes update the password and entropy.
 **New password** makes another suggestion; **Copy password** copies it.
@@ -132,6 +135,13 @@ cross-compiler, build the packager with the same Cargo command, and execute
 `./target/release/package-windows`. The packager builds both Windows
 executables and includes dictionary and dependency licenses. It writes a folder
 and ZIP under `dist/`. The Windows builds use a static C runtime.
+
+The app icon assets are in `assets/`: `four-words-source.png` is the generated
+master, `four-words.png` is the GUI icon, and `four-words.ico` contains the Windows
+icon sizes. The generation prompt is in `assets/icon-prompt.txt`. Windows GUI
+builds embed the ICO through `build.rs`, using the Windows SDK resource compiler
+on MSVC or MinGW-w64's `windres` on GNU. CLI-only builds with
+`--no-default-features` do not need a resource compiler.
 
 GUI measurements use a vendored `ui-observation` snapshot from commit
 `db0ce917815a1f699a1f161b38677c5434f59c64`; its source digests are in

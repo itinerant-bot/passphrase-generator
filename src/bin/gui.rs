@@ -519,8 +519,11 @@ fn number_control(ui: &mut egui::Ui, id: &str, input: &mut NumberInput) {
 }
 
 fn main() -> eframe::Result {
+    let icon = eframe::icon_data::from_png_bytes(include_bytes!("../../assets/four-words.png"))
+        .expect("the embedded application icon must be a valid PNG");
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
+            .with_icon(icon)
             .with_inner_size([1000.0, 740.0])
             .with_min_inner_size([620.0, 600.0]),
         centered: true,

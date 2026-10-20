@@ -1,0 +1,14 @@
+Generated with the built-in image_gen tool. The original output is preserved as
+four-words-source.png. four-words.png and four-words.ico are resized exports with
+the original transparency preserved.
+
+Use case: logo-brand
+Asset type: square desktop application icon for Four Words, a word-based passphrase generator; must work at Windows taskbar and title-bar sizes.
+Primary request: Convey the infinite words of the Library of Babel as one distinctive, beautifully restrained emblem.
+Subject: an open book whose broad flowing page ribbons curl into a clear infinity loop; the book sits within two receding hexagonal library arches suggesting endless shelves and Borges's Library of Babel. Integrate book, infinity, and hexagonal portal into a single cohesive symbol.
+Style/medium: crisp polished flat emblem, strong simple geometric shapes, subtle depth only, professional desktop app icon.
+Composition/framing: square 1:1 canvas; one large centered emblem filling about 86 percent of the canvas, fully visible with generous clean transparent padding; bold contours, balanced symmetry and legible silhouette when reduced to 16, 32, 48 pixels. Keep the infinity loop prominent and the book unmistakable.
+Color palette: deep ink blue for the hexagonal library body, warm ivory and amber gold for the pages and infinity loop; high contrast.
+Scene/backdrop: genuinely transparent outside the emblem.
+Text: no lettering or words.
+Constraints: only one icon, no presentation sheet, no mockup, no cast shadow outside the shape, no border framing the canvas, no watermark, no tiny ornament or fine lines, no surrounding particles; do not depict a padlock, a tower, or a realistic library interior.
