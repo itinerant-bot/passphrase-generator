@@ -196,6 +196,8 @@ impl PasswordApp {
                 ("english", "English"),
                 ("french", "French"),
                 ("german", "German"),
+                ("spanish", "Spanish"),
+                ("latin", "Latin"),
             ]) {
                 let _ = ui.checkbox(enabled, name).observe(
                     spec(&format!("settings.language.{key}"), Role::Button, name)
@@ -684,6 +686,8 @@ mod tests {
             "settings.language.english",
             "settings.language.french",
             "settings.language.german",
+            "settings.language.spanish",
+            "settings.language.latin",
             "settings.separator.hyphen",
             "settings.separator.space",
             "settings.complexity.uppercase",
@@ -745,6 +749,8 @@ mod tests {
             "settings.language.english",
             "settings.language.french",
             "settings.language.german",
+            "settings.language.spanish",
+            "settings.language.latin",
             "settings.complexity.uppercase",
             "settings.complexity.digit",
             "settings.complexity.special",
@@ -823,7 +829,7 @@ mod tests {
             Some(format!("#{r:02x}{g:02x}{b:02x}").as_str())
         );
         println!(
-            "default_layout: controls=22 fully_visible=22 minimum_button_height=54 columns_overlap=false password_plaintext_omitted=true achieved_entropy_color_verified=true"
+            "default_layout: controls=24 fully_visible=24 minimum_button_height=54 columns_overlap=false password_plaintext_omitted=true achieved_entropy_color_verified=true"
         );
     }
 

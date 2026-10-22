@@ -1,7 +1,7 @@
 # four-words
 
 A Rust password generator with a desktop app for Windows, macOS, and Linux,
-and a CLI. English, French, and German dictionaries are bundled. Builds require
+and a CLI. English, French, German, Spanish, and Latin dictionaries are bundled. Builds require
 Rust 1.88 or newer.
 
 ## Build
@@ -100,14 +100,15 @@ cargo build --release --locked --no-default-features --bin four-words
 cargo install --path . --locked
 four-words --dict ef --len 63 --count 5
 four-words --dict g --len 63 --separator " "
-four-words --dict efg --len 63 --count 5 --suggestions 5
+four-words --dict sl --len 63 --count 5
+four-words --dict efgsl --len 63 --count 5 --suggestions 5
 ```
 
 ## Options
 
 | Option | Meaning | Default |
 | --- | --- | --- |
-| `--dict` | `e` = English, `f` = French, `g` = German; combine letters | `efg` |
+| `--dict` | `e` = English, `f` = French, `g` = German, `s` = Spanish, `l` = Latin; combine letters | `efg` |
 | `--len` | Maximum characters, including separators | `128` |
 | `--count`, `-n` | Maximum words | Limited by `--len` |
 | `--separator` | Fixed printable ASCII separator | `-` |

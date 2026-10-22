@@ -12,6 +12,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let source = fs::read_to_string(&args[0])?;
     let mut words = BTreeSet::new();
     for line in source.lines() {
+        // The Latin source is PGP clear-signed. Signature bytes are not words.
+        if line.starts_with("-----BEGIN PGP SIGNATURE-----") {
+            break;
+        }
         let fields: Vec<_> = line.split_whitespace().collect();
         let word = match fields.as_slice() {
             [word] => *word,

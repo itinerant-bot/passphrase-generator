@@ -1,0 +1,19 @@
+Latin Diceware word list
+Creator: Sebastian Możejko
+Source: https://theworld.com/~reinhold/diceware_latin.txt.asc
+License declaration: https://theworld.com/~reinhold/diceware.html#languages
+
+The upstream Diceware page attributes this list to Sebastian Możejko and
+states that it is provided under a CC-BY (Creative Commons Attribution)
+license. That declaration does not specify a license version; four-words
+retains the upstream designation without assigning a version.
+
+Upstream statement (retrieved 2026-10-21):
+"Latin word list provided by Sebastian Możejko under a CC-BY license."
+
+Adaptation by four-words: dice-roll columns and PGP armor/signature removed;
+only ASCII alphabetic words of at least four characters retained; words
+lowercased, sorted and deduplicated. No endorsement is implied.
+
+Downloaded source SHA-256:
+f3d7a4f107c84451644e3486dc622fb4f0b807fbda1d645369e07f6af98198e7

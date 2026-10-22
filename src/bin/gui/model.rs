@@ -7,7 +7,7 @@ pub const MAX_WORDS: usize = 25;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Settings {
-    pub languages: [bool; 3],
+    pub languages: [bool; 5],
     pub max_length: usize,
     pub limit_words: bool,
     pub max_words: usize,
@@ -18,7 +18,7 @@ pub struct Settings {
 impl Default for Settings {
     fn default() -> Self {
         Self {
-            languages: [true, false, false],
+            languages: [true, false, false, false, false],
             max_length: MAX_LENGTH,
             limit_words: false,
             max_words: 5,
@@ -33,7 +33,7 @@ impl Settings {
         let selection: String = self
             .languages
             .iter()
-            .zip(['e', 'f', 'g'])
+            .zip(['e', 'f', 'g', 's', 'l'])
             .filter_map(|(&enabled, letter)| enabled.then_some(letter))
             .collect();
         if selection.is_empty() {
@@ -229,7 +229,7 @@ mod tests {
     #[test]
     fn gui_uses_same_entropy_as_cli_and_counts_length_including_separator() {
         let settings = Settings {
-            languages: [true, true, false],
+            languages: [true, true, false, false, false],
             max_length: 63,
             max_words: 5,
             spaces: true,
@@ -279,16 +279,58 @@ mod tests {
     }
 
     #[test]
+    fn spanish_and_latin_selections_match_their_embedded_dictionaries() {
+        for (languages, selection, sources) in [
+            (
+                [false, false, false, true, false],
+                "s",
+                vec![include_str!("../../../wordlists/spanish.txt")],
+            ),
+            (
+                [false, false, false, false, true],
+                "l",
+                vec![include_str!("../../../wordlists/latin.txt")],
+            ),
+            (
+                [false, false, false, true, true],
+                "sl",
+                vec![
+                    include_str!("../../../wordlists/spanish.txt"),
+                    include_str!("../../../wordlists/latin.txt"),
+                ],
+            ),
+        ] {
+            let settings = Settings {
+                languages,
+                max_words: 1,
+                limit_words: true,
+                ..Settings::default()
+            };
+            let suggestion = settings.generate().unwrap();
+            assert!(
+                sources
+                    .iter()
+                    .any(|source| source.lines().any(|word| word == suggestion.password))
+            );
+            let generator = Generator::new(selection.parse().unwrap(), MAX_LENGTH, "-")
+                .unwrap()
+                .with_max_words(NonZeroUsize::new(1).unwrap());
+            assert_eq!(suggestion.bits, generator.prepare().unwrap().entropy().bits);
+            assert_eq!(suggestion.words, 1);
+        }
+    }
+
+    #[test]
     fn unavailable_settings_produce_actionable_errors() {
         let mut settings = Settings {
-            languages: [false; 3],
+            languages: [false; 5],
             ..Settings::default()
         };
         assert_eq!(
             settings.generate().unwrap_err(),
             "Choose at least one language."
         );
-        settings.languages = [false, false, true];
+        settings.languages = [false, false, true, false, false];
         settings.max_length = 4;
         assert!(settings.generate().is_err());
         settings.max_length = 128;

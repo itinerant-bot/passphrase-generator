@@ -3,7 +3,7 @@ name = "four-words"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.88"
-description = "Memorable English, French, and German passphrases within a character limit"
+description = "Memorable multilingual passphrases within a character limit"
 license = "MIT"
 default-run = "four-words-gui"
 

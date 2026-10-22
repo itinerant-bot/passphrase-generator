@@ -11,7 +11,7 @@ use four_words::{Complexity, Generator, Languages};
     about = "Suggest memorable passphrases using secure OS randomness"
 )]
 struct Args {
-    /// Dictionary languages: e = English, f = French, g = German (any combination)
+    /// Dictionary languages: e = English, f = French, g = German, s = Spanish, l = Latin (combine letters)
     #[arg(long, default_value = "efg")]
     dict: Languages,
 

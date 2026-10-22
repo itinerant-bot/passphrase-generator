@@ -14,6 +14,8 @@ fn selected_words(selection: &str) -> HashSet<&'static str> {
         ('e', include_str!("../wordlists/english.txt")),
         ('f', include_str!("../wordlists/french.txt")),
         ('g', include_str!("../wordlists/german.txt")),
+        ('s', include_str!("../wordlists/spanish.txt")),
+        ('l', include_str!("../wordlists/latin.txt")),
     ] {
         if selection.contains(letter) {
             words.extend(source.lines());
@@ -55,7 +57,9 @@ fn reported_entropy(output: &Output) -> f64 {
 
 #[test]
 fn every_language_combination_obeys_the_budget_and_uses_only_selected_words() {
-    for selection in ["e", "f", "g", "ef", "eg", "fg", "efg"] {
+    for selection in [
+        "e", "f", "g", "s", "l", "ef", "eg", "fg", "efg", "sl", "es", "fl", "gsl", "efgsl",
+    ] {
         let dictionary = selected_words(selection);
         let minimum = dictionary.iter().map(|word| word.len()).min().unwrap();
         for budget in [4, 5, 8, 9, 13, 31, 63, 64] {

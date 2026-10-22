@@ -155,7 +155,7 @@ pub fn run() -> Result<(), Failure> {
     )?;
     let default_entropy = entropy(&snapshot)?;
     println!(
-        "native_window_visible=true dwm_presentation_confirmed=true fully_visible_controls=22 password_plaintext_omitted=true"
+        "native_window_visible=true dwm_presentation_confirmed=true fully_visible_controls=24 password_plaintext_omitted=true"
     );
 
     let target = native_element(
@@ -321,6 +321,32 @@ pub fn run() -> Result<(), Failure> {
         "word_cap_can_be_disabled=true fixed_separator_adds_zero_entropy=true space_password_length_verified=true"
     );
 
+    for (key, selection) in [
+        ("settings.language.spanish", "es"),
+        ("settings.language.latin", "esl"),
+    ] {
+        let target = native_element(&automation, hwnd, process_id, &snapshot, key)?;
+        // SAFETY: The checkbox is resolved from observed bounds and checked against the child PID.
+        unsafe {
+            target
+                .GetCurrentPatternAs::<IUIAutomationTogglePattern>(UIA_TogglePatternId)?
+                .Toggle()?;
+        }
+        snapshot = wait(&latest, |frame| selected(frame, key) && ready(frame))?;
+        let expected = four_words::Generator::new(selection.parse()?, 128, " ")?
+            .prepare()?
+            .entropy()
+            .bits;
+        ensure(
+            (entropy(&snapshot)? - expected).abs() < 0.0051,
+            "Mixed-language entropy differs from the selected dictionaries",
+        )?;
+    }
+    check_layout(&snapshot)?;
+    println!(
+        "spanish_selection_verified=true latin_selection_verified=true mixed_language_entropy_verified=true"
+    );
+
     // SAFETY: WM_CLOSE is posted only to the top-level window owned by our child PID.
     unsafe {
         PostMessageW(hwnd, WM_CLOSE, None, None)?;
@@ -437,6 +463,8 @@ fn check_layout(snapshot: &MemorySnapshot) -> Result<(), Failure> {
         "settings.language.english",
         "settings.language.french",
         "settings.language.german",
+        "settings.language.spanish",
+        "settings.language.latin",
         "settings.separator.hyphen",
         "settings.separator.space",
         "settings.complexity.uppercase",

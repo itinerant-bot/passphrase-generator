@@ -11,6 +11,8 @@ pub use entropy::{Entropy, Plan};
 const ENGLISH: &str = include_str!("../wordlists/english.txt");
 const FRENCH: &str = include_str!("../wordlists/french.txt");
 const GERMAN: &str = include_str!("../wordlists/german.txt");
+const SPANISH: &str = include_str!("../wordlists/spanish.txt");
+const LATIN: &str = include_str!("../wordlists/latin.txt");
 const MIN_WORD_LEN: usize = 4;
 
 /// Limited punctuation set used by the optional presentation transformation.
@@ -32,7 +34,7 @@ impl Complexity {
     }
 }
 
-/// A nonempty set of languages, selected by any combination of `e`, `f`, and `g`.
+/// A nonempty set of languages, selected by any combination of `e`, `f`, `g`, `s`, and `l`.
 /// Repeated letters select a language only once.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Languages(u8);
@@ -47,6 +49,8 @@ impl FromStr for Languages {
                 'e' => 1,
                 'f' => 2,
                 'g' => 4,
+                's' => 8,
+                'l' => 16,
                 _ => return Err(Error::InvalidLanguages(value.to_owned())),
             };
         }
@@ -74,7 +78,7 @@ impl fmt::Display for Error {
         match self {
             Self::InvalidLanguages(value) => write!(
                 f,
-                "invalid dictionary {value:?}; use a nonempty combination of e, f, and g"
+                "invalid dictionary {value:?}; use a nonempty combination of e, f, g, s, and l"
             ),
             Self::LengthTooSmall(length) => write!(
                 f,
@@ -169,7 +173,13 @@ impl Generator {
 
 fn dictionary(languages: Languages) -> Vec<&'static str> {
     let mut words = Vec::new();
-    for (bit, source) in [(1, ENGLISH), (2, FRENCH), (4, GERMAN)] {
+    for (bit, source) in [
+        (1, ENGLISH),
+        (2, FRENCH),
+        (4, GERMAN),
+        (8, SPANISH),
+        (16, LATIN),
+    ] {
         if languages.0 & bit != 0 {
             words.extend(source.lines().filter(|word| {
                 word.len() >= MIN_WORD_LEN && word.bytes().all(|byte| byte.is_ascii_lowercase())
@@ -243,11 +253,13 @@ mod tests {
             "ggffee".parse().unwrap()
         );
         assert_eq!("ef".parse::<Languages>().unwrap(), Languages(3));
+        assert_eq!("efgsl".parse::<Languages>().unwrap(), Languages(31));
+        assert_eq!("llssggffee".parse::<Languages>().unwrap(), Languages(31));
     }
 
     #[test]
     fn embedded_lists_are_large_sorted_unique_ascii_word_dictionaries() {
-        for source in [ENGLISH, FRENCH, GERMAN] {
+        for source in [ENGLISH, FRENCH, GERMAN, SPANISH, LATIN] {
             let words: Vec<_> = source.lines().collect();
             assert!(words.len() >= 5_000);
             assert!(words.windows(2).all(|pair| pair[0] < pair[1]));
@@ -263,18 +275,31 @@ mod tests {
 
     #[test]
     fn language_subsets_merge_without_extra_weight_for_shared_spellings() {
-        let english: HashSet<_> = ENGLISH.lines().collect();
-        let french: HashSet<_> = FRENCH.lines().collect();
-        let expected: HashSet<_> = english.union(&french).copied().collect();
-        let actual = dictionary("ef".parse().unwrap());
-        assert_eq!(actual.len(), expected.len());
-        assert_eq!(actual.into_iter().collect::<HashSet<_>>(), expected);
-        for (selection, source) in [("e", ENGLISH), ("f", FRENCH), ("g", GERMAN)] {
+        let sources = [
+            ('e', ENGLISH),
+            ('f', FRENCH),
+            ('g', GERMAN),
+            ('s', SPANISH),
+            ('l', LATIN),
+        ];
+        for bits in 1u8..32 {
+            let selection: String = sources
+                .iter()
+                .enumerate()
+                .filter(|(index, _)| bits & (1 << index) != 0)
+                .map(|(_, (letter, _))| *letter)
+                .collect();
+            let expected: HashSet<_> = sources
+                .iter()
+                .filter(|(letter, _)| selection.contains(*letter))
+                .flat_map(|(_, source)| source.lines())
+                .collect();
+            let actual = dictionary(selection.parse().unwrap());
+            assert_eq!(actual.len(), expected.len(), "{selection}");
             assert_eq!(
-                dictionary(selection.parse().unwrap())
-                    .into_iter()
-                    .collect::<HashSet<_>>(),
-                source.lines().collect()
+                actual.into_iter().collect::<HashSet<_>>(),
+                expected,
+                "{selection}"
             );
         }
     }
