@@ -49,6 +49,13 @@ of words** to enable the optional word cap. Choose your languages and either a
 fixed hyphen or a space between words. Changes update the password and entropy.
 **New password** makes another suggestion; **Copy password** copies it.
 
+For websites with character-class requirements, enable **Uppercase**,
+**Numbers**, and/or **Symbols**. The **Scramble amount**
+slider covers all these changes, including capitals. At **Minimal**, the entire
+password changes only one character per selected class. Raising the slider allows
+more positions to change, up to **Unconstrained**. Lowercase letters are always
+retained. Settings start with scrambling disabled.
+
 Entropy appears once, with the current password's character and word counts.
 A single color shows the achieved entropy, blending between the range
 midpoints and reaching violet at 96 bits:
@@ -105,14 +112,54 @@ four-words --dict efg --len 63 --count 5 --suggestions 5
 | `--count`, `-n` | Maximum words | Limited by `--len` |
 | `--separator` | Fixed printable ASCII separator | `-` |
 | `--suggestions` | Number of passwords to generate | `1` |
+| `--uppercase` | Require uppercase letters in randomized word renderings | Off |
+| `--digit` | Require digits in randomized word renderings | Off |
+| `--special` | Require a special character from `!@#%_` | Off |
+| `--scramble` | Allow more changed characters, including capitals: 0–100 | `0` (minimal) |
 
-Words use only lowercase ASCII letters and have at least four characters.
+Source words use only lowercase ASCII letters and have at least four characters.
 Selected dictionaries are merged and deduplicated. The separator is fixed and
 contributes zero entropy.
 
-The generator samples uniformly over valid word sequences within both caps,
-using exact counts and secure OS randomness. Dictionaries are embedded, so the
-installed binary runs offline.
+With scrambling disabled, the generator samples uniformly over valid word
+sequences within both caps, using exact counts and secure OS randomness.
+Dictionaries are embedded, so the installed binary runs offline.
+
+### Readable scrambling
+
+```sh
+four-words --dict e --len 24 --uppercase --digit --special --scramble 0
+four-words --dict e --len 24 --uppercase --digit --special --scramble 35
+```
+
+Scrambling is a secondary rendering of dictionary words. Individual positions
+can remain lowercase, become uppercase, or use a small set of visually related
+number/symbol alternatives. For example, `elite` can become `3lite`, `el1te`,
+`el1t#`, or `elit@`, depending on the enabled classes and amount. Choices and
+positions are random, rather than a fixed substitution applied everywhere.
+There is no prefix or suffix, and word lengths and separators stay unchanged.
+The dictionaries themselves are unchanged.
+
+Every selected class must appear **inside the words**, and at least one lowercase
+letter remains. A fixed separator does not satisfy a requested class. At amount
+0, exactly one letter per selected class changes across the whole password.
+Intermediate amounts increase the total change allowance linearly toward the
+maximum eligible password length; 100 removes the change cap. This is an upper
+limit, not a promise to change that percentage of every suggestion. Capitals
+consume the same allowance as numbers and symbols.
+
+The planner counts distinct readable rendered words, merging outputs that more
+than one source word can produce. It then counts and samples eligible rendered
+word sequences uniformly, including the class requirements and change allowance.
+This maximizes entropy within those constraints and credits the actual additional
+choices, without a fixed entropy deduction or counting duplicate spellings twice.
+Source words with more eligible renderings receive more total probability when
+scrambling is enabled. For ambiguous separators (including concatenation), the
+reported password entropy remains a conservative lower bound on min-entropy.
+If no rendering can meet the requirements, generation returns an error.
+
+The limited symbol set is a compatibility choice, not a guarantee that a website
+will accept the password or a SQL-injection safety rule. Website policies differ.
 
 ## Development
 

@@ -132,8 +132,16 @@ pub fn run() -> Result<(), Failure> {
         let _ = root.FindAll(TreeScope_Descendants, &condition)?;
     }
     snapshot = wait(&latest, |frame| {
-        frame.completed_frame > activation_frame && ready(frame)
+        frame.completed_frame > activation_frame
+            && ready(frame)
+            && element(frame, "settings.complexity.minimum").is_some()
+            && element(frame, "settings.complexity.maximum").is_some()
     })?;
+    let bounds = required(&snapshot, "settings.complexity.amount")?;
+    println!(
+        "startup_viewport={:?} scramble_slider={:?}",
+        bounds.viewport_rect, bounds.layout_rect
+    );
     check_layout(&snapshot)?;
     ensure(
         !required(&snapshot, "settings.word_limit.value")?
@@ -147,7 +155,7 @@ pub fn run() -> Result<(), Failure> {
     )?;
     let default_entropy = entropy(&snapshot)?;
     println!(
-        "native_window_visible=true dwm_presentation_confirmed=true fully_visible_controls=16 password_plaintext_omitted=true"
+        "native_window_visible=true dwm_presentation_confirmed=true fully_visible_controls=22 password_plaintext_omitted=true"
     );
 
     let target = native_element(
@@ -431,6 +439,12 @@ fn check_layout(snapshot: &MemorySnapshot) -> Result<(), Failure> {
         "settings.language.german",
         "settings.separator.hyphen",
         "settings.separator.space",
+        "settings.complexity.uppercase",
+        "settings.complexity.digit",
+        "settings.complexity.special",
+        "settings.complexity.amount",
+        "settings.complexity.minimum",
+        "settings.complexity.maximum",
         "result.entropy",
         "result.classification",
         "result.password",
@@ -445,6 +459,45 @@ fn check_layout(snapshot: &MemorySnapshot) -> Result<(), Failure> {
             &format!("Control clipped: {key}"),
         )?;
     }
+    let top = required(snapshot, "layout.title")?
+        .layout_rect
+        .min_y
+        .millionths();
+    let bottom = [
+        "settings.complexity.minimum",
+        "settings.complexity.maximum",
+        "action.generate",
+        "action.copy",
+    ]
+    .map(|key| required(snapshot, key).map(|element| element.layout_rect.max_y.millionths()))
+    .into_iter()
+    .collect::<Result<Vec<_>, _>>()?
+    .into_iter()
+    .max()
+    .unwrap();
+    let height = required(snapshot, "layout.title")?
+        .viewport_rect
+        .max_y
+        .millionths();
+    ensure(
+        (height - bottom - top).abs() <= 1_000_000,
+        &format!(
+            "Opening margins differ: top {top}, bottom {}",
+            height - bottom
+        ),
+    )?;
+    let option_rows = [
+        "settings.complexity.uppercase",
+        "settings.complexity.digit",
+        "settings.complexity.special",
+    ]
+    .map(|key| required(snapshot, key).map(|control| control.layout_rect.min_y));
+    let [uppercase, numbers, symbols] = option_rows;
+    let (uppercase, numbers, symbols) = (uppercase?, numbers?, symbols?);
+    ensure(
+        uppercase == numbers && numbers == symbols,
+        "Website requirements wrap onto multiple lines",
+    )?;
     ensure(
         matches!(
             required(snapshot, "result.password")?.content,

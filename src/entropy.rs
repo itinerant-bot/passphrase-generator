@@ -25,7 +25,8 @@ struct WordGroup {
 }
 
 /// Prepared counts and sampler for one set of generation constraints.
-/// Every nonempty word sequence satisfying both caps has equal probability.
+/// Every eligible sequence has equal probability. With scrambling enabled,
+/// sequences contain distinct rendered word variants rather than source words.
 pub struct Plan<'a> {
     generator: &'a Generator,
     groups: Vec<WordGroup>,
@@ -37,15 +38,20 @@ pub struct Plan<'a> {
     outcomes: BigUint,
     max_decodings: BigUint,
     entropy: Entropy,
+    scramble: Option<crate::scramble::ScramblePlan>,
 }
 
 impl<'a> Plan<'a> {
     pub(crate) fn new(generator: &'a Generator) -> Result<Self, Error> {
+        if generator.complexity.amount > 100 {
+            return Err(Error::InvalidScrambleAmount);
+        }
+        let max_len = generator.max_len;
         let shortest = generator.words[0].len();
         let longest = generator.words.last().unwrap().len();
         let separator_len = generator.separator.len();
         let physical_cap = match shortest.checked_add(separator_len) {
-            Some(cost) => 1 + (generator.max_len - shortest) / cost,
+            Some(cost) => 1 + (max_len - shortest) / cost,
             None => 1,
         };
         let max_words = generator
@@ -55,8 +61,8 @@ impl<'a> Plan<'a> {
         let effective_length = longest_cost
             .checked_mul(max_words - 1)
             .and_then(|tail| tail.checked_add(longest))
-            .unwrap_or(generator.max_len)
-            .min(generator.max_len);
+            .unwrap_or(max_len)
+            .min(max_len);
         if effective_length > MAX_EFFECTIVE_LENGTH || max_words > MAX_PLAN_CELLS {
             return Err(Error::PlanningLimit);
         }
@@ -74,7 +80,7 @@ impl<'a> Plan<'a> {
             }
         }
 
-        let max_tail_budget = generator.max_len - shortest;
+        let max_tail_budget = max_len - shortest;
         let horizons: Vec<_> = (1..max_words)
             .map(|count| longest_cost.saturating_mul(count).min(max_tail_budget))
             .collect();
@@ -113,6 +119,7 @@ impl<'a> Plan<'a> {
             max_words,
             outcomes: BigUint::default(),
             max_decodings: BigUint::from(1u32),
+            scramble: None,
             entropy: Entropy {
                 bits: 0.0,
                 word_sequence_bits: 0.0,
@@ -121,17 +128,22 @@ impl<'a> Plan<'a> {
         };
         // The first word has no separator, and an empty password is excluded.
         for group in &plan.groups {
-            if group.length > generator.max_len {
+            if group.length > max_len {
                 break;
             }
-            plan.outcomes += plan.completions(max_words - 1, generator.max_len - group.length)
-                * (group.end - group.start);
+            plan.outcomes +=
+                plan.completions(max_words - 1, max_len - group.length) * (group.end - group.start);
         }
-        if !generator
-            .separator
-            .bytes()
-            .any(|byte| !byte.is_ascii_lowercase())
-        {
+        if !generator.separator.bytes().any(|byte| {
+            if generator.complexity.enabled() {
+                !(byte.is_ascii_alphabetic()
+                    || generator.complexity.digit && byte.is_ascii_digit()
+                    || generator.complexity.special
+                        && crate::SPECIAL_CHARACTERS.as_bytes().contains(&byte))
+            } else {
+                !byte.is_ascii_lowercase()
+            }
+        }) {
             plan.max_decodings = plan.decoding_bound(effective_length);
         }
         let sequence_bits = log2(&plan.outcomes);
@@ -140,6 +152,13 @@ impl<'a> Plan<'a> {
             word_sequence_bits: sequence_bits,
             is_lower_bound: plan.max_decodings > BigUint::from(1u32),
         };
+        if generator.complexity.enabled() {
+            let scramble =
+                crate::scramble::ScramblePlan::new(generator, max_words, effective_length)?;
+            plan.outcomes = scramble.sequence_count().clone();
+            plan.entropy.bits = (log2(&plan.outcomes) - log2(&plan.max_decodings)).max(0.0);
+            plan.scramble = Some(scramble);
+        }
         Ok(plan)
     }
 
@@ -147,7 +166,7 @@ impl<'a> Plan<'a> {
         self.entropy
     }
 
-    /// Exact number of nonempty eligible word sequences.
+    /// Exact number of nonempty eligible sequences (rendered variants when scrambling).
     pub fn sequence_count(&self) -> &BigUint {
         &self.outcomes
     }
@@ -204,6 +223,9 @@ impl<'a> Plan<'a> {
     }
 
     fn generate_with(&self, random: &mut impl RandomSource) -> Result<String, Error> {
+        if let Some(scramble) = &self.scramble {
+            return scramble.generate(self.generator, random);
+        }
         let mut password = String::new();
         let mut budget = self.generator.max_len;
         let mut words = self.max_words;
@@ -274,7 +296,10 @@ fn log2(value: &BigUint) -> f64 {
     (leading as f64).log2() + shift as f64
 }
 
-fn random_below(random: &mut impl RandomSource, bound: &BigUint) -> Result<BigUint, Error> {
+pub(crate) fn random_below(
+    random: &mut impl RandomSource,
+    bound: &BigUint,
+) -> Result<BigUint, Error> {
     assert!(*bound > BigUint::default());
     let bits = (bound - 1u32).bits() as usize;
     if bits == 0 {
@@ -322,6 +347,7 @@ mod tests {
             max_len,
             max_words: NonZeroUsize::new(cap),
             separator: separator.to_owned(),
+            complexity: crate::Complexity::default(),
         }
     }
 

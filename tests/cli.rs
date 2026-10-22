@@ -205,3 +205,45 @@ fn invalid_arguments_fail_without_printing_a_password() {
         assert!(!output.stderr.is_empty(), "{args:?}");
     }
 }
+
+#[test]
+fn minimal_scramble_guarantees_classes_without_changing_length_or_adding_a_suffix() {
+    let output = run(&[
+        "--dict",
+        "e",
+        "--len",
+        "5",
+        "--count",
+        "1",
+        "--uppercase",
+        "--digit",
+        "--special",
+        "--suggestions",
+        "12",
+    ]);
+    assert!(output.status.success(), "{output:?}");
+    let bits = reported_entropy(&output);
+    let plain = run(&["--dict", "e", "--len", "5", "--count", "1"]);
+    assert!(bits > reported_entropy(&plain));
+    for password in std::str::from_utf8(&output.stdout).unwrap().lines() {
+        assert!((4..=5).contains(&password.len()));
+        assert_eq!(password.bytes().filter(u8::is_ascii_uppercase).count(), 1);
+        assert_eq!(password.bytes().filter(u8::is_ascii_digit).count(), 1);
+        assert_eq!(
+            password
+                .bytes()
+                .filter(|byte| four_words::SPECIAL_CHARACTERS.as_bytes().contains(byte))
+                .count(),
+            1
+        );
+        assert_eq!(
+            password.bytes().filter(u8::is_ascii_lowercase).count(),
+            password.len() - 3
+        );
+    }
+    for value in ["101", "-1", "abc"] {
+        let output = run(&["--uppercase", "--scramble", value]);
+        assert!(!output.status.success());
+        assert!(output.stdout.is_empty());
+    }
+}

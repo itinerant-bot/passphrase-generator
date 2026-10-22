@@ -1,6 +1,6 @@
 use std::num::NonZeroUsize;
 
-use four_words::{Generator, Languages};
+use four_words::{Complexity, Generator, Languages};
 
 pub const MAX_LENGTH: usize = 128;
 pub const MAX_WORDS: usize = 25;
@@ -12,6 +12,7 @@ pub struct Settings {
     pub limit_words: bool,
     pub max_words: usize,
     pub spaces: bool,
+    pub complexity: Complexity,
 }
 
 impl Default for Settings {
@@ -22,6 +23,7 @@ impl Default for Settings {
             limit_words: false,
             max_words: 5,
             spaces: false,
+            complexity: Complexity::default(),
         }
     }
 }
@@ -44,6 +46,7 @@ impl Settings {
         let separator = if self.spaces { " " } else { "-" };
         let mut generator = Generator::new(languages, self.max_length, separator)
             .map_err(|_| "Increase the character limit so a word can fit.".to_owned())?;
+        generator = generator.with_complexity(self.complexity);
         if self.limit_words {
             if !(1..=MAX_WORDS).contains(&self.max_words) {
                 return Err(format!("Enter a word limit from 1 to {MAX_WORDS}."));
@@ -230,6 +233,7 @@ mod tests {
             max_length: 63,
             max_words: 5,
             spaces: true,
+            complexity: Complexity::default(),
             limit_words: true,
         };
         let result = settings.generate().unwrap();
@@ -240,6 +244,38 @@ mod tests {
         assert!(result.password.len() <= 63);
         assert!(result.words <= 5);
         assert_eq!(result.words, result.password.split(' ').count());
+    }
+
+    #[test]
+    fn website_settings_share_the_cli_scrambler_and_preserve_counts() {
+        let settings = Settings {
+            max_length: 5,
+            max_words: 1,
+            limit_words: true,
+            complexity: Complexity {
+                uppercase: true,
+                digit: true,
+                special: true,
+                amount: 0,
+            },
+            ..Settings::default()
+        };
+        let result = settings.generate().unwrap();
+        assert_eq!(result.words, 1);
+        assert!(result.password.len() <= 5);
+        assert_eq!(
+            result
+                .password
+                .bytes()
+                .filter(|byte| !byte.is_ascii_lowercase())
+                .count(),
+            3
+        );
+        let generator = Generator::new("e".parse().unwrap(), 5, "-")
+            .unwrap()
+            .with_max_words(NonZeroUsize::new(1).unwrap())
+            .with_complexity(settings.complexity);
+        assert_eq!(result.bits, generator.prepare().unwrap().entropy().bits);
     }
 
     #[test]

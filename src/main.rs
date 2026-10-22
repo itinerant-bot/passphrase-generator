@@ -3,7 +3,7 @@ use std::num::NonZeroUsize;
 use std::process::ExitCode;
 
 use clap::Parser;
-use four_words::{Generator, Languages};
+use four_words::{Complexity, Generator, Languages};
 
 #[derive(Parser)]
 #[command(
@@ -27,13 +27,35 @@ struct Args {
     #[arg(short = 'n', long)]
     count: Option<NonZeroUsize>,
 
+    /// Randomize letter capitalization, guaranteeing uppercase and lowercase
+    #[arg(long)]
+    uppercase: bool,
+
+    /// Require digits among randomized readable character substitutions
+    #[arg(long)]
+    digit: bool,
+
+    /// Require special characters (!@#%_) among readable substitutions
+    #[arg(long)]
+    special: bool,
+
+    /// Scramble amount for all changed letters: 0 = minimal, 100 = unconstrained
+    #[arg(long, default_value_t = 0, value_parser = clap::value_parser!(u8).range(0..=100))]
+    scramble: u8,
+
     /// Number of independent password suggestions to print, one per line
     #[arg(long, default_value = "1")]
     suggestions: NonZeroUsize,
 }
 
 fn run(args: Args) -> Result<(), Box<dyn std::error::Error>> {
-    let mut generator = Generator::new(args.dict, args.len, &args.separator)?;
+    let mut generator =
+        Generator::new(args.dict, args.len, &args.separator)?.with_complexity(Complexity {
+            uppercase: args.uppercase,
+            digit: args.digit,
+            special: args.special,
+            amount: args.scramble,
+        });
     if let Some(count) = args.count {
         generator = generator.with_max_words(count);
     }

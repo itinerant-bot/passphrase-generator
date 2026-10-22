@@ -5,12 +5,32 @@ use std::num::NonZeroUsize;
 use std::str::FromStr;
 
 mod entropy;
+mod scramble;
 pub use entropy::{Entropy, Plan};
 
 const ENGLISH: &str = include_str!("../wordlists/english.txt");
 const FRENCH: &str = include_str!("../wordlists/french.txt");
 const GERMAN: &str = include_str!("../wordlists/german.txt");
 const MIN_WORD_LEN: usize = 4;
+
+/// Limited punctuation set used by the optional presentation transformation.
+pub const SPECIAL_CHARACTERS: &str = "!@#%_";
+
+/// Character classes to guarantee after selecting words. Dictionaries are unchanged.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub struct Complexity {
+    pub uppercase: bool,
+    pub digit: bool,
+    pub special: bool,
+    /// Maximum changed characters per password, from minimal (0) to all (100).
+    pub amount: u8,
+}
+
+impl Complexity {
+    pub(crate) fn enabled(self) -> bool {
+        self.uppercase || self.digit || self.special
+    }
+}
 
 /// A nonempty set of languages, selected by any combination of `e`, `f`, and `g`.
 /// Repeated letters select a language only once.
@@ -45,6 +65,8 @@ pub enum Error {
     NoWordsFit,
     Randomness(getrandom::Error),
     PlanningLimit,
+    InvalidScrambleAmount,
+    NoValidScramble,
 }
 
 impl fmt::Display for Error {
@@ -69,6 +91,11 @@ impl fmt::Display for Error {
                 "no words in the selected dictionary fit the length limit"
             ),
             Self::Randomness(error) => write!(f, "secure OS randomness is unavailable: {error}"),
+            Self::InvalidScrambleAmount => write!(f, "scramble amount must be from 0 to 100"),
+            Self::NoValidScramble => write!(
+                f,
+                "no readable transformations satisfy the selected character classes within these limits; increase the length or word limit"
+            ),
             Self::PlanningLimit => write!(
                 f,
                 "constraints exceed the entropy planner's resource limit; reduce --len or --count"
@@ -85,11 +112,12 @@ pub struct Generator {
     max_len: usize,
     max_words: Option<NonZeroUsize>,
     separator: String,
+    complexity: Complexity,
 }
 
 impl Generator {
     /// Construct a generator. The length includes every separator, and the
-    /// separator may be empty. Words are always lowercase ASCII letters.
+    /// separator may be empty. Source words are always lowercase ASCII letters.
     pub fn new(languages: Languages, max_len: usize, separator: &str) -> Result<Self, Error> {
         if max_len < MIN_WORD_LEN {
             return Err(Error::LengthTooSmall(max_len));
@@ -108,6 +136,7 @@ impl Generator {
             max_len,
             max_words: None,
             separator: separator.to_owned(),
+            complexity: Complexity::default(),
         })
     }
 
@@ -115,6 +144,13 @@ impl Generator {
     /// precedence, so a password may contain fewer words than this cap.
     pub fn with_max_words(mut self, limit: NonZeroUsize) -> Self {
         self.max_words = Some(limit);
+        self
+    }
+
+    /// Apply optional randomized presentation after word selection. The original
+    /// length limit is unchanged; replacements always retain lowercase letters.
+    pub fn with_complexity(mut self, complexity: Complexity) -> Self {
+        self.complexity = complexity;
         self
     }
 

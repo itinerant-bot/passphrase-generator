@@ -16,6 +16,8 @@ use ui_observation_protocol::{
 };
 use ui_observation_runtime::ObservationRuntime;
 
+const INITIAL_WINDOW_SIZE: Vec2 = Vec2::new(1280.0, 708.0);
+
 const DEBOUNCE: Duration = Duration::from_millis(140);
 
 struct Request {
@@ -65,6 +67,8 @@ impl PasswordApp {
                 .insert(egui::TextStyle::Monospace, FontId::monospace(23.0));
             style.spacing.item_spacing = Vec2::new(14.0, 12.0);
             style.spacing.interact_size = Vec2::new(48.0, 38.0);
+            style.spacing.icon_width = 26.0;
+            style.spacing.icon_width_inner = 18.0;
             style.spacing.slider_width = 380.0;
             style.visuals.selection.bg_fill = Color32::from_rgb(25, 66, 150);
             style.visuals.selection.stroke.color = Color32::WHITE;
@@ -217,6 +221,64 @@ impl PasswordApp {
                         .with_selected(self.settings.spaces),
                 );
         });
+        ui.add_space(2.0);
+        ui.label("Website requirements");
+        ui.horizontal_wrapped(|ui| {
+            for (enabled, key, label) in [
+                (
+                    &mut self.settings.complexity.uppercase,
+                    "uppercase",
+                    "Uppercase (A–Z)",
+                ),
+                (
+                    &mut self.settings.complexity.digit,
+                    "digit",
+                    "Numbers (0–9)",
+                ),
+                (
+                    &mut self.settings.complexity.special,
+                    "special",
+                    "Symbols (!@#%_)",
+                ),
+            ] {
+                let _ = ui.checkbox(enabled, label).observe(
+                    spec(&format!("settings.complexity.{key}"), Role::Button, label)
+                        .with_selected(*enabled),
+                );
+            }
+        });
+        ui.add_enabled_ui(
+            self.settings.complexity.uppercase
+                || self.settings.complexity.digit
+                || self.settings.complexity.special,
+            |ui| {
+                ui.label("Scramble amount")
+                    .on_hover_text("Minimal changes one character per selected class across the whole password. Higher settings allow more changes.");
+                let _ = ui
+                    .add(
+                        egui::Slider::new(&mut self.settings.complexity.amount, 0..=100)
+                            .suffix("%"),
+                    )
+                    .observe(
+                        spec(
+                            "settings.complexity.amount",
+                            Role::Button,
+                            "Scramble amount",
+                        )
+                        .with_content(public(&self.settings.complexity.amount.to_string())),
+                    );
+                ui.horizontal(|ui| {
+                    let _ = ui.label("Minimal").observe(
+                        spec("settings.complexity.minimum", Role::Label, "Minimal"),
+                    );
+                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                        let _ = ui.label("Unconstrained").observe(
+                            spec("settings.complexity.maximum", Role::Label, "Unconstrained"),
+                        );
+                    });
+                });
+            },
+        );
     }
 
     fn entropy(&self, ui: &mut egui::Ui) {
@@ -338,7 +400,11 @@ impl PasswordApp {
             .show(ctx, |ui| {
                 let _ = egui::ScrollArea::vertical()
                     .show(ui, |ui| {
-                        ui.heading("Four Words");
+                        let _ = ui.heading("Four Words").observe(spec(
+                            "layout.title",
+                            Role::Label,
+                            "Four Words",
+                        ));
                         ui.label("Passwords made from words you can type.");
                         ui.add_space(8.0);
                         if ui.available_width() >= 850.0 {
@@ -524,7 +590,7 @@ fn main() -> eframe::Result {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_icon(icon)
-            .with_inner_size([1000.0, 740.0])
+            .with_inner_size(INITIAL_WINDOW_SIZE)
             .with_min_inner_size([620.0, 600.0]),
         centered: true,
         ..Default::default()
@@ -600,9 +666,9 @@ mod tests {
         let capture = Arc::new(Capture::default());
         ctx.install_observation_runtime(ObservationRuntime::with_sink(NONCE, capture.clone()));
         // A second layout pass settles wrapped rows before measuring.
-        let _ = observed_frame(&mut app, &ctx, &capture, Vec2::new(1000.0, 740.0), vec![]);
+        let _ = observed_frame(&mut app, &ctx, &capture, INITIAL_WINDOW_SIZE, vec![]);
         let (snapshot, output) =
-            observed_frame(&mut app, &ctx, &capture, Vec2::new(1000.0, 740.0), vec![]);
+            observed_frame(&mut app, &ctx, &capture, INITIAL_WINDOW_SIZE, vec![]);
         assert!(snapshot.completed_frame.is_some());
         assert!(
             snapshot
@@ -620,6 +686,12 @@ mod tests {
             "settings.language.german",
             "settings.separator.hyphen",
             "settings.separator.space",
+            "settings.complexity.uppercase",
+            "settings.complexity.digit",
+            "settings.complexity.special",
+            "settings.complexity.amount",
+            "settings.complexity.minimum",
+            "settings.complexity.maximum",
             "result.entropy",
             "result.classification",
             "result.password",
@@ -635,6 +707,82 @@ mod tests {
                 control.layout_rect
             );
             control.validate().unwrap();
+        }
+        let top_margin = element(&snapshot, "layout.title")
+            .layout_rect
+            .min_y
+            .millionths();
+        let last_element_bottom = [
+            "settings.complexity.minimum",
+            "settings.complexity.maximum",
+            "action.generate",
+            "action.copy",
+        ]
+        .map(|key| element(&snapshot, key).layout_rect.max_y.millionths())
+        .into_iter()
+        .max()
+        .unwrap();
+        let bottom_margin = (INITIAL_WINDOW_SIZE.y * 1e6) as i64 - last_element_bottom;
+        assert!(
+            (bottom_margin - top_margin).abs() <= 1_000_000,
+            "opening margins differ: top {top_margin}, bottom {bottom_margin}"
+        );
+        let options: Vec<_> = [
+            "settings.complexity.uppercase",
+            "settings.complexity.digit",
+            "settings.complexity.special",
+        ]
+        .map(|key| element(&snapshot, key).layout_rect)
+        .into();
+        assert!(
+            options
+                .windows(2)
+                .all(|pair| pair[0].min_y == pair[1].min_y),
+            "website requirements wrap at the opening size: {options:?}"
+        );
+        for key in [
+            "settings.words.enabled",
+            "settings.language.english",
+            "settings.language.french",
+            "settings.language.german",
+            "settings.complexity.uppercase",
+            "settings.complexity.digit",
+            "settings.complexity.special",
+        ] {
+            let bounds = element(&snapshot, key).layout_rect;
+            let left = bounds.min_x.millionths() as f32 / 1e6;
+            let center_y = (bounds.min_y.millionths() + bounds.max_y.millionths()) as f32 / 2e6;
+            let square = output
+                .shapes
+                .iter()
+                .find_map(|shape| match &shape.shape {
+                    egui::Shape::Rect(rect)
+                        if (rect.rect.left() - left).abs() < 0.1
+                            && (rect.rect.center().y - center_y).abs() < 0.1 =>
+                    {
+                        Some(rect.rect)
+                    }
+                    _ => None,
+                })
+                .unwrap_or_else(|| panic!("checkbox square was not painted: {key}"));
+            let label_height = output
+                .shapes
+                .iter()
+                .find_map(|shape| match &shape.shape {
+                    egui::Shape::Text(text)
+                        if text.pos.x > square.right()
+                            && text.pos.x < bounds.max_x.millionths() as f32 / 1e6
+                            && (text.pos.y + text.galley.size().y / 2.0 - center_y).abs() < 0.1 =>
+                    {
+                        Some(text.galley.size().y)
+                    }
+                    _ => None,
+                })
+                .unwrap_or_else(|| panic!("checkbox label was not painted: {key}"));
+            assert!(
+                square.height() >= label_height && square.width() >= label_height,
+                "checkbox is smaller than its label: {key}: {square:?}, text height {label_height}"
+            );
         }
         for key in ["action.generate", "action.copy"] {
             let rect = element(&snapshot, key).layout_rect;
@@ -675,7 +823,7 @@ mod tests {
             Some(format!("#{r:02x}{g:02x}{b:02x}").as_str())
         );
         println!(
-            "default_layout: controls=16 fully_visible=16 minimum_button_height=54 columns_overlap=false password_plaintext_omitted=true achieved_entropy_color_verified=true"
+            "default_layout: controls=22 fully_visible=22 minimum_button_height=54 columns_overlap=false password_plaintext_omitted=true achieved_entropy_color_verified=true"
         );
     }
 
@@ -732,6 +880,44 @@ mod tests {
         assert_eq!(
             element(&snapshot, "settings.character_limit.value").text_value,
             Some(Content::digest_only(app.length.text.as_bytes()))
+        );
+        let rect = element(&snapshot, "settings.complexity.uppercase").layout_rect;
+        let point = egui::pos2(
+            (rect.min_x.millionths() + 12_000_000) as f32 / 1e6,
+            ((rect.min_y.millionths() + rect.max_y.millionths()) / 2) as f32 / 1e6,
+        );
+        let _ = observed_frame(
+            &mut app,
+            &ctx,
+            &capture,
+            size,
+            vec![egui::Event::PointerMoved(point), click(point, true)],
+        );
+        let (snapshot, _) =
+            observed_frame(&mut app, &ctx, &capture, size, vec![click(point, false)]);
+        assert!(app.settings.complexity.uppercase);
+        assert!(
+            element(&snapshot, "settings.complexity.amount")
+                .states
+                .enabled
+        );
+        let rect = element(&snapshot, "settings.complexity.amount").layout_rect;
+        let point = egui::pos2(
+            ((rect.min_x.millionths() + rect.max_x.millionths()) / 2) as f32 / 1e6,
+            ((rect.min_y.millionths() + rect.max_y.millionths()) / 2) as f32 / 1e6,
+        );
+        let _ = observed_frame(
+            &mut app,
+            &ctx,
+            &capture,
+            size,
+            vec![egui::Event::PointerMoved(point), click(point, true)],
+        );
+        let _ = observed_frame(&mut app, &ctx, &capture, size, vec![click(point, false)]);
+        assert!(app.settings.complexity.amount > 0);
+        assert_eq!(
+            app.active.as_ref().unwrap().complexity,
+            app.settings.complexity
         );
         println!(
             "input_metrics: word_cap_selected=true word_editor_enabled=true slider_and_editor_synchronized=true"
