@@ -3,13 +3,30 @@
 A Rust password generator with a desktop app for Windows, macOS, and Linux,
 and a CLI. English, French, German, Spanish, and Latin dictionaries are bundled.
 
-## Download for Windows
+## Download
 
-[**Download the Windows app (ZIP)**](https://github.com/itinerant-bot/passphrase-generator/releases/latest/download/four-words-windows-x64.zip)
+| Computer | Download |
+| --- | --- |
+| Windows, Intel/AMD 64-bit | [Windows ZIP](https://github.com/itinerant-bot/passphrase-generator/releases/latest/download/four-words-windows-x64.zip) |
+| Linux, Intel/AMD 64-bit | [Linux ZIP](https://github.com/itinerant-bot/passphrase-generator/releases/latest/download/four-words-linux-x64.zip) |
+| Mac, Apple Silicon (M1 or newer) | [macOS Apple Silicon ZIP](https://github.com/itinerant-bot/passphrase-generator/releases/latest/download/four-words-macos-arm64.zip) |
+| Mac, Intel | [macOS Intel ZIP](https://github.com/itinerant-bot/passphrase-generator/releases/latest/download/four-words-macos-x64.zip) |
 
-Extract the ZIP, open the extracted folder, and double-click **Four Words.exe**.
-No installation, Rust, or WSL is needed. The package is for 64-bit Intel/AMD
-Windows and includes the CLI and license notices.
+Extract the ZIP, then open **Four Words.exe** on Windows, **Four Words.app**
+on macOS, or run `./four-words-gui` on Linux. Each package includes the CLI and
+license notices. No Rust or WSL is needed.
+
+The Mac app can be dragged to Applications. It is ad-hoc signed, but not
+Developer ID signed or notarized. If macOS blocks it, try opening it and then
+choose **System Settings → Privacy & Security → Open Anyway**.
+[Apple's instructions](https://support.apple.com/en-us/102445).
+
+Linux packages target Ubuntu 24.04 or a compatible newer distribution with a
+desktop and OpenGL. If runtime libraries are missing on Ubuntu:
+
+```sh
+sudo apt install libxkbcommon0 libwayland-client0 libegl1 libgl1 libxcb1
+```
 
 [All releases and checksums](https://github.com/itinerant-bot/passphrase-generator/releases).
 
@@ -191,10 +208,30 @@ git push github v0.1.1
 ```
 
 The [Release workflow](.github/workflows/release.yml) checks the tag against the
-package version, tests and builds on Windows with MSVC, and publishes the
-portable ZIP and SHA-256 checksum after the build succeeds. The download URL
-above always points to the latest release. The release starts as a draft while
-its assets upload and is published once both files are attached.
+package version and tests and builds on native Windows, Linux, Apple Silicon,
+and Intel Mac runners. It publishes all four ZIPs and their SHA-256 checksums
+only after every build succeeds. Download URLs above always point to the latest
+release. Assets upload to a draft before the complete release is published.
+
+Build a package for your current platform (Windows x64, Linux x64, or macOS
+Apple Silicon/Intel):
+
+```sh
+cargo run --release --locked --no-default-features --features packaging --bin package-release
+```
+
+The packager builds the GUI and CLI and writes a versioned folder and ZIP under
+`dist/`, including dictionary and dependency licenses. ZIPs retain executable
+permissions on Linux and macOS. On Linux, install the desktop development
+libraries first:
+
+```sh
+sudo apt install libxkbcommon-dev libwayland-dev libegl1-mesa-dev libgl1-mesa-dev libxcb1-dev
+```
+
+macOS packaging runs on a Mac and creates an ad-hoc signed `.app` bundle.
+Set `MACOSX_DEPLOYMENT_TARGET=11.0` when building to match release builds.
+Developer ID signing and notarization are not configured.
 
 Build the portable Windows ZIP on Windows with the MSVC Rust toolchain:
 
