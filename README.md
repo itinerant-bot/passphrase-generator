@@ -1,12 +1,21 @@
 # four-words
 
 A Rust password generator with a desktop app for Windows, macOS, and Linux,
-and a CLI. English, French, German, Spanish, and Latin dictionaries are bundled. Builds require
-Rust 1.88 or newer.
+and a CLI. English, French, German, Spanish, and Latin dictionaries are bundled.
+
+## Download for Windows
+
+[**Download the Windows app (ZIP)**](https://github.com/itinerant-bot/passphrase-generator/releases/latest/download/four-words-windows-x64.zip)
+
+Extract the ZIP, open the extracted folder, and double-click **Four Words.exe**.
+No installation, Rust, or WSL is needed. The package is for 64-bit Intel/AMD
+Windows and includes the CLI and license notices.
+
+[All releases and checksums](https://github.com/itinerant-bot/passphrase-generator/releases).
 
 ## Build
 
-From the repository directory, build the GUI and CLI:
+With Rust 1.88 or newer, build the GUI and CLI from the repository directory:
 
 ```sh
 cargo build --release --locked
@@ -170,6 +179,22 @@ cargo fmt --check
 cargo test --all-features --locked
 cargo clippy --all-targets --all-features --locked -- -D warnings
 ```
+
+To publish a new binary release, update the package version in `Cargo.toml`
+and `Cargo.lock`, update [.github/RELEASE_NOTES.md](.github/RELEASE_NOTES.md),
+then commit and push the changes and a matching version tag:
+
+```sh
+git tag -a v0.1.1 -m "Four Words v0.1.1"
+git push github main
+git push github v0.1.1
+```
+
+The [Release workflow](.github/workflows/release.yml) checks the tag against the
+package version, tests and builds on Windows with MSVC, and publishes the
+portable ZIP and SHA-256 checksum after the build succeeds. The download URL
+above always points to the latest release. The release starts as a draft while
+its assets upload and is published once both files are attached.
 
 Build the portable Windows ZIP on Windows with the MSVC Rust toolchain:
 
